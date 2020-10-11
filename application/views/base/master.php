@@ -33,6 +33,10 @@
   <link id="color" rel="stylesheet" href="<?php echo base_url();?>/assets/css/color-1.css" media="screen">
   <!-- Responsive css-->
   <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>/assets/css/responsive.css">
+
+  <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>/assets/css/animate.css">
+  <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>/assets/css/chartist.css">
+  <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>/assets/css/date-picker.css">
 </head>
 <body>
   <!-- Loader starts-->
@@ -315,6 +319,22 @@
 <!-- Sidebar jquery-->
 <script src="<?php echo base_url();?>/assets/js/sidebar-menu.js"></script>
 <script src="<?php echo base_url();?>/assets/js/config.js"></script>
+
+<script src="<?php echo base_url();?>/assets/js/chart/chartist/chartist.js"></script>
+<script src="<?php echo base_url();?>/assets/js/chart/chartist/chartist-plugin-tooltip.js"></script>
+<script src="<?php echo base_url();?>/assets/js/chart/knob/knob.min.js"></script>
+<script src="<?php echo base_url();?>/assets/js/chart/knob/knob-chart.js"></script>
+<script src="<?php echo base_url();?>/assets/js/chart/apex-chart/apex-chart.js"></script>
+<script src="<?php echo base_url();?>/assets/js/chart/apex-chart/stock-prices.js"></script>
+<script src="<?php echo base_url();?>/assets/js/notify/bootstrap-notify.min.js"></script>
+<script src="<?php echo base_url();?>/assets/js/dashboard/default.js"></script>
+<script src="<?php echo base_url();?>/assets/js/notify/index.js"></script>
+<script src="<?php echo base_url();?>/assets/js/datepicker/date-picker/datepicker.js"></script>
+<script src="<?php echo base_url();?>/assets/js/datepicker/date-picker/datepicker.en.js"></script>
+<script src="<?php echo base_url();?>/assets/js/datepicker/date-picker/datepicker.custom.js"></script>
+<script src="<?php echo base_url();?>/assets/js/tooltip-init.js"></script>
+
+
 <!-- Plugins JS start-->
 <script src="<?php echo base_url();?>/assets/js/prism/prism.min.js"></script>
 <script src="<?php echo base_url();?>/assets/js/clipboard/clipboard.min.js"></script>
