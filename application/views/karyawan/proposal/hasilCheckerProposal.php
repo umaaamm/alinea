@@ -1,11 +1,11 @@
 <div class="page-header">
 	<div class="row">
 		<div class="col-lg-6">
-			<h3>Hasil Checker Makalah</h3>
+			<h3>Hasil Checker Proposal</h3>
 			<ol class="breadcrumb">
 				<li class="breadcrumb-item"><a href="<?php echo base_url();?>/ltr/index.html">Home</a></li>
 				<li class="breadcrumb-item">Forms  </li>
-				<li class="breadcrumb-item active">Hasil Checker Makalah</li>
+				<li class="breadcrumb-item active">Hasil Checker Proposal</li>
 			</ol>
 		</div>
 		<div class="col-lg-6">
@@ -43,8 +43,8 @@
 							<thead>
 								<tr>
 									<th scope="col">#</th>
-									<th scope="col">Judul Makalah</th>
-									<th scope="col">Nama File Makalah</th>
+									<th scope="col">Judul Proposal</th>
+									<th scope="col">Nama File Proposal</th>
 									<th scope="col">Waktu Upload</th>
 									<th scope="col">Status Cek Plagiat</th>
 									<th scope="col">Hasil Plagiatrism</th>
@@ -52,18 +52,18 @@
 								</tr>
 							</thead>
 							<?php $a=1;
-							foreach ($dataListMakalah as $key) {
+							foreach ($dataListProposal as $key) {
 								?>
 								<tbody>
 									<tr>
 										<th scope="row"><?php echo $a;?></th>
-										<td><?php echo $key['judul_makalah'];?></td>
-										<td><?php echo $key['nama_file_makalah'];?></td>
+										<td><?php echo $key['judul_proposal'];?></td>
+										<td><?php echo $key['nama_file_proposal'];?></td>
 										<td><?php echo $key['waktu_upload'];?></td>
 										<td><?php echo $key['status_simirariti'];?></td>
 										<td><?php echo $key['similarity'];?> %</td>
-										<td><button class="btn btn-primary" type="button" data-original-title="Cek Status Plagiat" title="" onclick="hapus('<?php echo $key["id_makalah"]; ?>')">Refresh Hasil</button>
-											<a href="<?=base_url('upload/'.$key['nama_file_makalah']);?>" class="btn btn-success" target="_blank">Show Pdf</a>
+										<td><button class="btn btn-primary" type="button" data-original-title="Cek Status Plagiat" title="" onclick="hapus('<?php echo $key["id_proposal"]; ?>')">Refresh Hasil</button>
+											<a href="<?=base_url('upload/'.$key['nama_file_proposal']);?>" class="btn btn-success" target="_blank">Show Pdf</a>
 
 										</tr>
 										<?php $a++; } ?>
@@ -76,6 +76,6 @@
 		</div>
 		<script type="text/javascript">
 			function hapus($id_similarity){
-				document.location='<?php echo base_url(); ?>ControllerKaryawan/checkPlagiat/'+$id_similarity;
+				document.location='<?php echo base_url(); ?>ControllerKaryawan/checkPlagiatProposal/'+$id_similarity;
 			}
 		</script>

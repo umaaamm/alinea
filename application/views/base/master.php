@@ -180,7 +180,7 @@
                 <div class="according-menu"><i class="fa fa-angle-<?php echo $this->uri->rsegment(1) == 'ControllerAdminDivisi' ? 'down' : 'right' ?>"></i></div>
               </a>
               <ul class="nav-submenu menu-content" style="display: <?php echo $this->uri->rsegment(1) === 'ControllerAdminDivisi' ?  'block;' : 'none;' ?>">
-                <li><a href="#" class="<?php echo $this->uri->rsegment(2) == 'indexListProposal' ? 'active' : '' ?>">List Proposal</a></li>
+                <li><a href="<?php echo base_url();?>Divisi/ListProposal" class="<?php echo $this->uri->rsegment(2) == 'indexListProposal' ? 'active' : '' ?>">List Proposal</a></li>
                 <li><a href="<?php echo base_url()?>AdminDivisi/ListMakalah" class="<?php echo $this->uri->rsegment(2) === 'indexListMakalah' ?  'active' : '' ?>">List Makalah</a></li>
                 <li><a href="#" class="<?php echo $this->uri->rsegment(2) == 'indexScoreProposal' ? 'active' : '' ?>">Score Proposal</a></li>
               </ul>
@@ -191,8 +191,8 @@
                 <div class="according-menu"><i class="fa fa-angle-<?php echo $this->uri->rsegment(1) == 'ControllerAdminDirektorat' ? 'down' : 'right' ?>"></i></div>
               </a>
               <ul class="nav-submenu menu-content" style="display: <?php echo $this->uri->rsegment(1) === 'ControllerAdminDirektorat' ? 'block;' : 'none;' ?>">
-                <li><a href="#" class="<?php echo $this->uri->rsegment(2) === 'indexListProposalDirektorat' ?  'active' : '' ?>">List Proposal</a></li>
-                <li><a href="#" class="<?php echo $this->uri->rsegment(2) === 'indexListMakalahDirektorat' ?  'active' : '' ?>">List Makalah</a></li>
+                <li><a href="<?php echo base_url();?>Direktorat/ListProposal" class="<?php echo $this->uri->rsegment(2) === 'indexListProposalDirektorat' ?  'active' : '' ?>">List Proposal</a></li>
+                <li><a href="<?php echo base_url();?>Direktorat/ListMakalah" class="<?php echo $this->uri->rsegment(2) === 'indexListMakalahDirektorat' ?  'active' : '' ?>">List Makalah</a></li>
                 <li><a href="#" class="<?php echo $this->uri->rsegment(2) === 'indexScoreMakalahDirektorat' ?  'active' : '' ?>">Score Makalah</a></li>
               </ul>
             </li>
@@ -202,8 +202,8 @@
                 <div class="according-menu"><i class="fa fa-angle-<?php echo $this->uri->rsegment(1) == 'ControllerAdminArea' ? 'down' : 'right' ?>"></i></div>
               </a>
               <ul class="nav-submenu menu-content" style="display: <?php echo $this->uri->rsegment(1) === 'ControllerAdminArea' ? 'block;' : 'none;' ?>">
-                <li><a href="#" class="<?php echo $this->uri->rsegment(2) === 'indexListProposalArea' ?  'active' : '' ?>">List Proposal</a></li>
-                <li><a href="#" class="<?php echo $this->uri->rsegment(2) === 'indexListMakalahArea' ?  'active' : '' ?>">List Makalah</a></li>
+                <li><a href="<?php echo base_url();?>Area/ListMakalah" class="<?php echo $this->uri->rsegment(2) === 'indexListProposalArea' ?  'active' : '' ?>">List Proposal</a></li>
+                <li><a href="<?php echo base_url();?>Area/ListMakalah" class="<?php echo $this->uri->rsegment(2) === 'indexListMakalahArea' ?  'active' : '' ?>">List Makalah</a></li>
                 <li><a href="#" class="<?php echo $this->uri->rsegment(2) === 'indexScoreProposalArea' ?  'active' : '' ?>">Score Proposal</a></li>
 
               </ul>
@@ -214,8 +214,8 @@
                 <div class="according-menu"><i class="fa fa-angle-<?php echo $this->uri->rsegment(1) == 'ControllerAdminKanwil' ? 'down' : 'right' ?>"></i></div>
               </a>
               <ul class="nav-submenu menu-content" style="display: <?php echo $this->uri->rsegment(1) == 'ControllerAdminKanwil' ? 'block;' : 'none;' ?>">
-                <li><a href="#" class="<?php echo $this->uri->rsegment(2) === 'indexListProposalKanwil' ?  'active' : '' ?>">List Proposal</a></li>
-                <li><a href="#" class="<?php echo $this->uri->rsegment(2) === 'indexListMakalahKanwil' ?  'active' : '' ?>">List Makalah</a></li>
+                <li><a href="<?php echo base_url();?>Kanwil/ListMakalah" class="<?php echo $this->uri->rsegment(2) === 'indexListProposalKanwil' ?  'active' : '' ?>">List Proposal</a></li>
+                <li><a href="<?php echo base_url();?>Kanwil/ListMakalah" class="<?php echo $this->uri->rsegment(2) === 'indexListMakalahKanwil' ?  'active' : '' ?>">List Makalah</a></li>
                 <li><a href="#" class="<?php echo $this->uri->rsegment(2) === 'indexScoreMakalahKanwil' ?  'active' : '' ?>">Score Makalah</a></li>
               </ul>
             </li>
@@ -237,14 +237,14 @@
                 <div class="according-menu"><i class="fa fa-angle-<?php echo $this->uri->rsegment(1) == 'ControllerSuperAdmin' ? 'down' : 'right' ?>"></i></div>
               </a>
               <ul class="nav-submenu menu-content" style="display: <?php echo $this->uri->rsegment(1) == 'ControllerSuperAdmin' ? 'block;' : 'none;' ?>">
-                <li><a href="#" class="<?php echo $this->uri->rsegment(2) === 'indexManajemenJuri' ?  'active' : '' ?>">Manajemen Juri</a></li>
+                <li><a href="<?php echo base_url();?>SuperAdmin/DataJuri" class="<?php echo $this->uri->rsegment(2) === 'indexManajemenJuri' ?  'active' : '' ?>">Manajemen Juri</a></li>
                 <li><a href="#" class="<?php echo $this->uri->rsegment(2) === 'indexFileTerupload' ?  'active' : '' ?>">File Terupload</a></li>
                 <li><a href="#" class="<?php echo $this->uri->rsegment(2) === 'indexFileChecker' ?  'active' : '' ?>">File Checker</a></li>
-                <li><a href="#" class="<?php echo $this->uri->rsegment(2) === 'indexManajemenAdmin' ?  'active' : '' ?>">Manajemen Admin</a></li>
-                <li><a href="#" class="<?php echo $this->uri->rsegment(2) === 'indexManajemenTreshold' ?  'active' : '' ?>">Manajemen Treshold</a></li>
-                <li><a href="#" class="<?php echo $this->uri->rsegment(2) === 'indexManajemenSuperAdmin' ?  'active' : '' ?>">Manajemen Super Admin</a></li>
-                <li><a href="#" class="<?php echo $this->uri->rsegment(2) === 'indexListMakalahSuperAdmin' ?  'active' : '' ?>">List Makalah</a></li>
-                <li><a href="#" class="<?php echo $this->uri->rsegment(2) === 'indexListProposalSuperAdmin' ?  'active' : '' ?>">List Proposal</a></li>
+                <li><a href="<?php echo base_url();?>Admin/ManajemenAdmin" class="<?php echo $this->uri->rsegment(2) === 'indexManajemenAdmin' ?  'active' : '' ?>">Manajemen Admin</a></li>
+                <li><a href="<?php echo base_url();?>SuperAdmin/Treshold" class="<?php echo $this->uri->rsegment(2) === 'indexManajemenTreshold' ?  'active' : '' ?>">Manajemen Treshold</a></li>
+                <li><a href="<?php echo base_url();?>SuperAdmin/ManajemenSuperAdmin" class="<?php echo $this->uri->rsegment(2) === 'indexManajemenSuperAdmin' ?  'active' : '' ?>">Manajemen Super Admin</a></li>
+                <li><a href="<?php echo base_url();?>Admin/ListMakalah" class="<?php echo $this->uri->rsegment(2) === 'indexListMakalahSuperAdmin' ?  'active' : '' ?>">List Makalah</a></li>
+                <li><a href="<?php echo base_url();?>Admin/ListProposal" class="<?php echo $this->uri->rsegment(2) === 'indexListProposalSuperAdmin' ?  'active' : '' ?>">List Proposal</a></li>
                 <li><a href="#" class="<?php echo $this->uri->rsegment(2) === 'indexScoreMakalahSuperAdmin' ?  'active' : '' ?>">Score Makalah</a></li>
                 <li><a href="#" class="<?php echo $this->uri->rsegment(2) === 'indexScoreProposalSuperAdmin' ?  'active' : '' ?>">Score Proposal</a></li>
               </ul>
@@ -252,15 +252,16 @@
 
 
             <li class="dropdown">
-              <a class="nav-link menu-title <?php echo $this->uri->rsegment(1) == 'ControllerKaryawan' ? 'active' : '' ?>" href="#"><i data-feather="user"></i><span>Karyawan</span>
+              <a class="nav-link menu-title active" href="#"><i data-feather="user"></i><span>Karyawan</span>
                 <div class="according-menu"><i class="fa fa-angle-<?php echo $this->uri->rsegment(1) == 'ControllerKaryawan' ? 'down' : 'right' ?>"></i></div>
               </a>
               <ul class="nav-submenu menu-content" style="display: <?php echo $this->uri->rsegment(1) == 'ControllerKaryawan' ? 'block;' : 'none;' ?>">
                 <li><a href="#" class="<?php echo $this->uri->rsegment(2) === 'indexDashboardKaryawan' ?  'active' : '' ?>">Dashboard</a></li>
                 <li><a href="<?php echo base_url()?>Karyawan/UploadMakalah" class="<?php echo $this->uri->rsegment(2) === 'indexUploadMakalah' ?  'active' : '' ?>">Upload Makalah</a></li>
-                <li><a href="#" class="<?php echo $this->uri->rsegment(2) === 'indexUploadProposal' ?  'active' : '' ?>">Upload Proposal</a></li>
-                <li><a href="#" class="<?php echo $this->uri->rsegment(2) === 'indexUploadResumeProposal' ?  'active' : '' ?>">Upload Resume Nasional</a></li>
+                <li><a href="<?php echo base_url();?>Karyawan/UploadProposal" class="<?php echo $this->uri->rsegment(2) === 'indexUploadProposal' ?  'active' : '' ?>">Upload Proposal</a></li>
+                <li><a href="<?php echo base_url();?>Karyawan/UploadResume" class="<?php echo $this->uri->rsegment(2) === 'indexUploadResumeProposal' ?  'active' : '' ?>">Upload Resume Nasional</a></li>
                 <li><a href="<?php echo base_url();?>Karyawan/HasilPlagiat" class="<?php echo $this->uri->rsegment(2) === 'indexHasilChecker' ?  'active' : '' ?>">Hasil Checker</a></li>
+                <li><a href="<?php echo base_url();?>Karyawan/HasilPlagiatProposal" class="<?php echo $this->uri->rsegment(2) === 'indexHasilCheckerProposal' ?  'active' : '' ?>">Hasil Checker Proposal</a></li>
               </ul>
             </li>
 

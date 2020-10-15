@@ -1,11 +1,11 @@
 <div class="page-header">
 	<div class="row">
 		<div class="col-lg-6">
-			<h3>Upload Makalah</h3>
+			<h3>Upload Resume</h3>
 			<ol class="breadcrumb">
 				<li class="breadcrumb-item"><a href="<?php echo base_url();?>/ltr/index.html">Home</a></li>
 				<li class="breadcrumb-item">Forms  </li>
-				<li class="breadcrumb-item active">Upload Makalah</li>
+				<li class="breadcrumb-item active">Upload Resume</li>
 			</ol>
 		</div>
 		<div class="col-lg-6">
@@ -35,15 +35,26 @@
 			<?php echo $this->session->flashdata('notif');?>
 			<div class="card">
 				<div class="card-header">
-					<h5>Form Upload Makalah</h5>
-					<span>Silahkan Upload Makalah sesuai dengan form yang telah disediakan.</span>
+					<h5>Form Upload Resume</h5>
+					<span>Silahkan Upload Resume sesuai dengan form yang telah disediakan.</span>
 				</div>
 				<div class="card-body">
-					<form class="needs-validation" method="post" enctype="multipart/form-data" action="<?php echo base_url();?>Karyawan/Upload">
+					<form class="needs-validation" method="post" enctype="multipart/form-data" action="<?php echo base_url();?>Karyawan/SimpanResume">
 						<div class="row">
 							<div class="col-md-4 mb-3">
-								<label for="validationCustom01">Judul Makalah</label>
-								<input class="form-control" id="validationCustom01" type="text" placeholder="Judul Makalah" name="judul_makalah" required="Judul Makalah Tidak Boleh Kosong">
+								<label for="validationCustom01">Judul Resume</label>
+								<input class="form-control" id="validationCustom01" type="text" placeholder="Judul Resume" name="judul_resume" required="Judul Resume Tidak Boleh Kosong">
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-4 mb-3">
+								<label for="exampleFormControlSelect9">Judul Makalah PIA</label>
+								<select class="form-control digits" name="id_makalah" id="exampleFormControlSelect9">
+									<option value="-">- Pilih Salah Satu -</option>
+									<?php foreach($listMakalah as $row_k):?>
+										<option value="<?php echo $row_k->id_makalah;?>"><?php echo $row_k->judul_makalah;?></option>
+									<?php endforeach;?>
+								</select>
 							</div>
 						</div>
 						<div class="row">
@@ -76,23 +87,12 @@
 							</div>
 						</div>
 						<div class="row">
-							<div class="col-md-4 mb-3">
-								<label for="exampleFormControlSelect9">Kategori PIA</label>
-								<select class="form-control digits" name="kategori" id="exampleFormControlSelect9">
-									<option value="-">- Pilih Salah Satu -</option>
-									<?php foreach($listKategori as $row_k):?>
-										<option value="<?php echo $row_k->id_kategori;?>"><?php echo $row_k->nama_kategori;?></option>
-									<?php endforeach;?>
-								</select>
-							</div>
-						</div>
-						<div class="row">
 							<label class="col-lg-12 control-label">Upload File</label>
 							<div class="col-md-4 mb-3">
 								<input class="input-file" type="file" required="" name="berkas">
 							</div>
 						</div>
-						<button class="btn btn-primary" type="submit">Upload Makalah</button>
+						<button class="btn btn-primary" type="submit">Upload Resume</button>
 					</form>
 				</div>
 			</div>
@@ -109,34 +109,32 @@
 						<thead>
 							<tr>
 								<th scope="col">#</th>
+								<th scope="col">Judul Resume</th>
 								<th scope="col">Judul Makalah</th>
-								<th scope="col">Nama File Makalah</th>
+								<th scope="col">Nama File Resume</th>
 								<th scope="col">Kategori Makalah</th>
 								<th scope="col">Nik Karyawan</th>
 								<th scope="col">Unit Kerja</th>
-								<th scope="col">Area/ Divisi</th>
-								<th scope="col">Cabang</th>
 								<th scope="col">Waktu Upload</th>
 								<th scope="col">Action</th>
 							</tr>
 						</thead>
 						<?php $a=1;
-						foreach ($dataListMakalah as $key) {
+						foreach ($dataListResume as $key) {
 							?>
 							<tbody>
 								<tr>
 									<th scope="row"><?php echo $a;?></th>
 									<td><?php echo $key['judul_makalah'];?></td>
 									<td><?php echo $key['nama_file_makalah'];?></td>
-									<td><?php echo $key['id_kategori'];?></td>
+									<td><?php echo $key['nama_file'];?></td>
+									<td><?php echo $key['nama_kategori'];?></td>
 									<td><?php echo $key['id_karyawan'];?></td>
-									<td><?php echo $key['id_unit_kerja'];?></td>
-									<td><?php echo $key['id_area'];?></td>
-									<td><?php echo $key['id_cabang'];?></td>
+									<td><?php echo $key['nama_unit_kerja'];?> <br> <?php echo $key['nama_area'];?> - <?php echo $key['nama_cabang'];?></td>
 									<td><?php echo $key['waktu_upload'];?></td>
 									<td>
-										<button class="btn btn-danger" type="button" data-original-title="Hapus Makalah" title="" onclick="hapus('<?php echo $key['id_makalah']?>')"><i class="fa fa-trash-o"></i></button>
-										<button class="btn btn-primary" type="button" data-original-title="Edit Makalah" data-toggle="modal" data-target="#editModal" title="" onclick="edit('<?php echo $key['id_makalah'];?>','<?php echo $key['judul_makalah'];?>','<?php echo $key['id_unit_kerja'];?>','<?php echo $key['id_area'];?>','<?php echo $key['id_cabang'];?>','<?php echo $key['id_kategori'];?>','<?php echo $key['nama_file_makalah'];?>')"><i class="fa fa-pencil"></i></button></td>							
+										<button class="btn btn-danger" type="button" data-original-title="Hapus Resume" title="" onclick="hapus('<?php echo $key['id_resume_nasional']?>')"><i class="fa fa-trash-o"></i></button>
+										<button class="btn btn-primary" type="button" data-original-title="Edit Resume" data-toggle="modal" data-target="#editModal" title="" onclick="edit('<?php echo $key['id_resume_nasional'];?>','<?php echo $key['judul_resume'];?>','<?php echo $key['id_unit_kerja'];?>','<?php echo $key['id_area'];?>','<?php echo $key['id_cabang'];?>','<?php echo $key['id_kategori'];?>','<?php echo $key['nama_file'];?>')"><i class="fa fa-pencil"></i></button></td>							
 									</tr>
 									<?php $a++; } ?>
 								</tbody>
@@ -244,8 +242,8 @@
 
 	<script type="text/javascript">
 
-		function hapus($id_makalah){
-			document.location='<?php echo base_url(); ?>ControllerKaryawan/HapusMakalah/'+$id_makalah;
+		function hapus($id_resume_nasional){
+			document.location='<?php echo base_url(); ?>ControllerKaryawan/HapusResume/'+$id_resume_nasional;
 		}
 
 		function edit(id,jdl_mkl,unitKerja,areaID,cabang,kategoriID,nama_file_makalah){

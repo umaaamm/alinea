@@ -58,11 +58,56 @@ $route['Admin'] ='ControllerAdmin';
 
 //Admin List Makalah
 $route['AdminDivisi/ListMakalah'] ='ControllerAdminDivisi/indexListMakalah';
+$route['SuperAdmin/DataJuri'] = 'ControllerAdmin/indexManajemenJuri';
+$route['SuperAdmin/Juri'] = 'ControllerAdmin/SimpanJuri';
+$route['SuperAdmin/EditDataJuri'] = 'ControllerAdmin/EditDataJuri';
+
+//Admin
+$route['Admin/ManajemenAdmin'] = 'ControllerAdmin/indexAdmin';
+$route['Admin/SimpanAdmin'] = 'ControllerAdmin/SimpanAdmin';
+$route['Admin/EditDataAdmin'] = 'ControllerAdmin/EditDataAdmin';
+
+//List Makalah
+$route['Admin/ListMakalah'] = 'ControllerAdmin/ListMakalahAll';
+
+//ListProposal
+$route['Admin/ListProposal'] = 'ControllerAdmin/ListProposalAll';
 
 
+//Divisi
+$route['Divisi/ListProposal'] = 'ControllerAdminDivisi/indexListProposal';
+
+//Direktorat
+$route['Direktorat/ListProposal'] = 'ControllerDirektorat/indexListProposal';
+$route['Direktorat/ListMakalah'] = 'ControllerDirektorat/indexListMakalah';
+
+//Area
+$route['Area/ListProposal'] = 'ControllerArea/indexListProposal';
+$route['Area/ListMakalah'] = 'ControllerArea/indexListMakalah';
+
+//Kanwil
+$route['Kanwil/ListProposal'] = 'ControllerKanwil/indexListProposal';
+$route['Kanwil/ListMakalah'] = 'ControllerKanwil/indexListMakalah';
+
+
+//Super Admin
+$route['SuperAdmin/ManajemenSuperAdmin'] = 'ControllerAdmin/indexSuperAdmin';
+$route['SuperAdmin/SimpanAdmin'] = 'ControllerAdmin/SimpanSuperAdmin';
+$route['SuperAdmin/EditDataAdmin'] = 'ControllerAdmin/EditDataSuperAdmin';
 
 //Karyawan
 $route['Karyawan/UploadMakalah'] ='ControllerKaryawan/indexListMakalahKaryawan';
 $route['Karyawan/Upload'] ='ControllerKaryawan/uploadMakalahMethod';
 $route['Karyawan/HasilPlagiat'] ='ControllerKaryawan/hasilPlagiat';
 
+$route['Karyawan/UploadProposal'] ='ControllerKaryawan/indexListProposalKaryawan';
+$route['Karyawan/SimpanProposal'] ='ControllerKaryawan/uploadProposalMethod';
+$route['Karyawan/HasilPlagiatProposal'] ='ControllerKaryawan/hasilPlagiatProposal';
+
+$route['Karyawan/UploadResume'] ='ControllerKaryawan/indexListResumeKaryawan';
+$route['Karyawan/SimpanResume'] ='ControllerKaryawan/uploadResumeMethod';
+
+
+//Treshold
+$route['SuperAdmin/Treshold'] ='ControllerAdmin/indexListTreshold';
+$route['SuperAdmin/EditTreshold'] ='ControllerAdmin/editTreshold';

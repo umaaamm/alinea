@@ -1,11 +1,11 @@
 <div class="page-header">
 	<div class="row">
 		<div class="col-lg-6">
-			<h3>Upload Makalah</h3>
+			<h3>Upload Proposal</h3>
 			<ol class="breadcrumb">
 				<li class="breadcrumb-item"><a href="<?php echo base_url();?>/ltr/index.html">Home</a></li>
 				<li class="breadcrumb-item">Forms  </li>
-				<li class="breadcrumb-item active">Upload Makalah</li>
+				<li class="breadcrumb-item active">Upload Proposal</li>
 			</ol>
 		</div>
 		<div class="col-lg-6">
@@ -35,15 +35,15 @@
 			<?php echo $this->session->flashdata('notif');?>
 			<div class="card">
 				<div class="card-header">
-					<h5>Form Upload Makalah</h5>
-					<span>Silahkan Upload Makalah sesuai dengan form yang telah disediakan.</span>
+					<h5>Form Upload Proposal</h5>
+					<span>Silahkan Upload Proposal sesuai dengan form yang telah disediakan.</span>
 				</div>
 				<div class="card-body">
-					<form class="needs-validation" method="post" enctype="multipart/form-data" action="<?php echo base_url();?>Karyawan/Upload">
+					<form class="needs-validation" method="post" enctype="multipart/form-data" action="<?php echo base_url();?>Karyawan/SimpanProposal">
 						<div class="row">
 							<div class="col-md-4 mb-3">
-								<label for="validationCustom01">Judul Makalah</label>
-								<input class="form-control" id="validationCustom01" type="text" placeholder="Judul Makalah" name="judul_makalah" required="Judul Makalah Tidak Boleh Kosong">
+								<label for="validationCustom01">Judul Proposal</label>
+								<input class="form-control" id="validationCustom01" type="text" placeholder="Judul Proposal" name="judul_proposal" required="Judul Proposal Tidak Boleh Kosong">
 							</div>
 						</div>
 						<div class="row">
@@ -92,7 +92,7 @@
 								<input class="input-file" type="file" required="" name="berkas">
 							</div>
 						</div>
-						<button class="btn btn-primary" type="submit">Upload Makalah</button>
+						<button class="btn btn-primary" type="submit">Upload Proposal</button>
 					</form>
 				</div>
 			</div>
@@ -109,9 +109,9 @@
 						<thead>
 							<tr>
 								<th scope="col">#</th>
-								<th scope="col">Judul Makalah</th>
-								<th scope="col">Nama File Makalah</th>
-								<th scope="col">Kategori Makalah</th>
+								<th scope="col">Judul Proposal</th>
+								<th scope="col">Nama File Proposal</th>
+								<th scope="col">Kategori Proposal</th>
 								<th scope="col">Nik Karyawan</th>
 								<th scope="col">Unit Kerja</th>
 								<th scope="col">Area/ Divisi</th>
@@ -121,13 +121,13 @@
 							</tr>
 						</thead>
 						<?php $a=1;
-						foreach ($dataListMakalah as $key) {
+						foreach ($dataListProposal as $key) {
 							?>
 							<tbody>
 								<tr>
 									<th scope="row"><?php echo $a;?></th>
-									<td><?php echo $key['judul_makalah'];?></td>
-									<td><?php echo $key['nama_file_makalah'];?></td>
+									<td><?php echo $key['judul_proposal'];?></td>
+									<td><?php echo $key['nama_file_proposal'];?></td>
 									<td><?php echo $key['id_kategori'];?></td>
 									<td><?php echo $key['id_karyawan'];?></td>
 									<td><?php echo $key['id_unit_kerja'];?></td>
@@ -135,8 +135,8 @@
 									<td><?php echo $key['id_cabang'];?></td>
 									<td><?php echo $key['waktu_upload'];?></td>
 									<td>
-										<button class="btn btn-danger" type="button" data-original-title="Hapus Makalah" title="" onclick="hapus('<?php echo $key['id_makalah']?>')"><i class="fa fa-trash-o"></i></button>
-										<button class="btn btn-primary" type="button" data-original-title="Edit Makalah" data-toggle="modal" data-target="#editModal" title="" onclick="edit('<?php echo $key['id_makalah'];?>','<?php echo $key['judul_makalah'];?>','<?php echo $key['id_unit_kerja'];?>','<?php echo $key['id_area'];?>','<?php echo $key['id_cabang'];?>','<?php echo $key['id_kategori'];?>','<?php echo $key['nama_file_makalah'];?>')"><i class="fa fa-pencil"></i></button></td>							
+										<button class="btn btn-danger" type="button" data-original-title="Hapus Proposal" title="" onclick="hapus('<?php echo $key['id_proposal']?>')"><i class="fa fa-trash-o"></i></button>
+										<button class="btn btn-primary" type="button" data-original-title="Edit Proposal" data-toggle="modal" data-target="#editModal" title="" onclick="edit('<?php echo $key['id_proposal'];?>','<?php echo $key['judul_proposal'];?>','<?php echo $key['id_unit_kerja'];?>','<?php echo $key['id_area'];?>','<?php echo $key['id_cabang'];?>','<?php echo $key['id_kategori'];?>','<?php echo $key['nama_file_proposal'];?>')"><i class="fa fa-pencil"></i></button></td>							
 									</tr>
 									<?php $a++; } ?>
 								</tbody>
@@ -160,8 +160,8 @@
 						<input type="hidden" name="id_makalah" id="id" readonly>
 						<div class="row">
 							<div class="col-md-4 mb-3">
-								<label for="validationCustom01">Judul Makalah</label>
-								<input class="form-control" id="jdl_mkl" type="text" placeholder="Judul Makalah" name="judul_makalah" required="Judul Makalah Tidak Boleh Kosong">
+								<label for="validationCustom01">Judul Proposal</label>
+								<input class="form-control" id="jdl_mkl" type="text" placeholder="Judul Proposal" name="judul_proposal" required="Judul Proposal Tidak Boleh Kosong">
 							</div>
 						</div>
 						<div class="row">
@@ -244,8 +244,8 @@
 
 	<script type="text/javascript">
 
-		function hapus($id_makalah){
-			document.location='<?php echo base_url(); ?>ControllerKaryawan/HapusMakalah/'+$id_makalah;
+		function hapus($id_proposal){
+			document.location='<?php echo base_url(); ?>ControllerKaryawan/HapusMakalah/'+$id_proposal;
 		}
 
 		function edit(id,jdl_mkl,unitKerja,areaID,cabang,kategoriID,nama_file_makalah){
