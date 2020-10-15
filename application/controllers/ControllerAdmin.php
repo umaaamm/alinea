@@ -102,7 +102,8 @@ class ControllerAdmin extends CI_Controller {
 
 	//Admin
 	public function indexAdmin(){
-		$databeranda['listAdmin'] = $this->db->query("select * from tbl_admin")->result_array();
+		$databeranda['listUnitKerja'] = $this->db->query('select * from tbl_unit_kerja')->result();
+		$databeranda['listAdmin'] = $this->db->query("select * from tbl_admin JOIN tbl_unit_kerja ON tbl_admin.id_unit_kerja = tbl_unit_kerja.id_unit_kerja JOIN tbl_area ON tbl_admin.id_area = tbl_area.id_area")->result_array();
 		$databeranda['content']='admin/admin/admin';
 		$this->load->view('base/master',$databeranda);
 	}
@@ -112,6 +113,9 @@ class ControllerAdmin extends CI_Controller {
 		$data['email']=$this->input->post("email");
 		$data['password']=$this->input->post("password");
 		$data['role_admin']=$this->input->post("role_admin");
+		$data['id_unit_kerja']=$this->input->post("unit_kerja");
+		$data['id_area']=$this->input->post("area");
+
 		$this->db->insert('tbl_admin',$data);
 		$this->session->set_flashdata("notif","<div class='alert alert-success'>Data berhasil di simpan</div>");
 		header('location:'.base_url().'Admin/ManajemenAdmin');

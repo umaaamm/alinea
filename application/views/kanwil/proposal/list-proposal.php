@@ -37,8 +37,8 @@
 
 			<div class="card">
 				<div class="card-header">
-					<h5>Data Makalah yang sudah terupload</h5>
-					Dibawah ini adalah data file makalah yang telah diupload.
+					<h5>Data Proposal yang sudah terupload</h5>
+					Dibawah ini adalah data file Proposal yang telah diupload.
 				</div>
 				<div class="table-responsive">
 					<table class="table table-border-horizontal">

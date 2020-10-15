@@ -89,6 +89,11 @@ $route['Area/ListMakalah'] = 'ControllerArea/indexListMakalah';
 $route['Kanwil/ListProposal'] = 'ControllerKanwil/indexListProposal';
 $route['Kanwil/ListMakalah'] = 'ControllerKanwil/indexListMakalah';
 
+//Juri
+$route['Juri/ListProposal'] = 'ControllerJuri/indexListProposal';
+$route['Juri/ListMakalah'] = 'ControllerJuri/indexListMakalah';
+$route['Juri/Resume'] = 'ControllerJuri/indexListResume';
+
 
 //Super Admin
 $route['SuperAdmin/ManajemenSuperAdmin'] = 'ControllerAdmin/indexSuperAdmin';

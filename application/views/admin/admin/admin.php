@@ -60,6 +60,26 @@
 						</div>
 						<div class="row">
 							<div class="col-md-4 mb-3">
+								<label for="exampleFormControlSelect9">Unit Kerja</label>
+								<select class="form-control digits" name="unit_kerja" id="unitKerja">
+									<option value="-">- Pilih Salah Satu -</option>
+									<?php foreach($listUnitKerja as $row):?>
+										<option value="<?php echo $row->id_unit_kerja;?>"><?php echo $row->nama_unit_kerja;?></option>
+									<?php endforeach;?>
+								</select>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-md-4 mb-3">
+								<label for="exampleFormControlSelect9">Area/ Divisi</label>
+								<select class="unitKerjaClass form-control digits" name="area">
+									<option value="-">- Pilih Salah Satu -</option>
+								</select>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-4 mb-3">
 								<label for="exampleFormControlSelect9">Role Admin</label>
 								<select class="form-control digits" name="role_admin" id="exampleFormControlSelect9">
 									<option value="-">- Pilih Salah Satu -</option>
@@ -92,6 +112,8 @@
 								<th scope="col">Email Admin</th>
 								<th scope="col">Password</th>
 								<th scope="col">Role Admin</th>
+								<th scope="col">Unit Kerja</th>
+								<th scope="col">Area/ Divisi</th>
 								<th scope="col">Action</th>
 							</tr>
 						</thead>
@@ -121,6 +143,8 @@
 										<td>Admin Budaya Kerja</td>
 									<?php } ?>	
 
+									<td><?php echo $key['nama_unit_kerja'];?></td>
+									<td><?php echo $key['nama_area'];?></td>
 									<td><button class="btn btn-primary" type="button" data-original-title="Edit Data Admin" title=""data-toggle="modal" data-target="#editModal" onclick="edit('<?php echo $key["id_admin"]; ?>','<?php echo $key["nama"]; ?>','<?php echo $key["email"]; ?>','<?php echo $key["password"]; ?>','<?php echo $key["role_admin"]; ?>')">Edit</button>
 										<button class="btn btn-danger" type="button" data-original-title="Hapus Data Admin" title="" onclick="hapus(<?php echo $key['id_admin'];?>)">Hapus</button></td>
 									</tr>
@@ -167,6 +191,25 @@
 								<option value="5">Admin Budaya Kerja</option>
 							</select>
 						</div>
+						<div class="form-group">
+								<label for="exampleFormControlSelect9">Unit Kerja</label>
+								<select class="form-control digits" name="unit_kerja" id="unitKerjaPop">
+									<option value="-">- Pilih Salah Satu -</option>
+									<?php foreach($listUnitKerja as $row):?>
+										<option value="<?php echo $row->id_unit_kerja;?>"><?php echo $row->nama_unit_kerja;?></option>
+									<?php endforeach;?>
+								</select>
+						</div>
+
+						<div class="form-group">
+								<label for="exampleFormControlSelect9">Area/ Divisi</label>
+								<select class="unitKerjaClassPop form-control digits" name="area">
+									<option value="-">- Pilih Salah Satu -</option>
+									<!-- <?php foreach($listUnitKerja as $row):?>
+										<option value="<?php echo $row->id_unit_kerja;?>"><?php echo $row->nama_unit_kerja;?></option>
+									<?php endforeach;?> -->
+								</select>
+						</div>
 					</div>
 					<div class="modal-footer">
 						<button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
@@ -176,7 +219,7 @@
 			</div>
 		</div>
 	</div>
-
+	<script src="<?php echo base_url();?>/assets/js/jquery-3.5.1.min.js"></script>
 	<script type="text/javascript">
 		function hapus($id_juri){
 			document.location='<?php echo base_url(); ?>ControllerAdmin/HapusDataAdmin/'+$id_juri;
@@ -194,6 +237,50 @@
 				format: 'yyyy-mm-dd',
 				autoclose: true,
 				todayHighlight: true,
+			});
+		});	
+
+		$(document).ready(function(){
+			$('#unitKerja').change(function(){
+				var id=$(this).val();
+				$.ajax({
+					url : "<?php echo base_url();?>ControllerKaryawan/getArea",
+					method : "POST",
+					data : {id: id},
+					async : false,
+					dataType : 'json',
+					success: function(data){
+						var html = '';
+						var i;
+						for(i=0; i<data.length; i++){
+							html += '<option value="'+data[i].id_area+'">'+data[i].nama_area+'</option>';
+						}
+						$('.unitKerjaClass').html(html);
+
+					}
+				});
+			});
+		});
+
+		$(document).ready(function(){
+			$('#areaID').change(function(){
+				var id=$(this).val();
+				$.ajax({
+					url : "<?php echo base_url();?>ControllerKaryawan/getCabang",
+					method : "POST",
+					data : {id: id},
+					async : false,
+					dataType : 'json',
+					success: function(data){
+						var html = '';
+						var i;
+						for(i=0; i<data.length; i++){
+							html += '<option value="'+data[i].id_cabang+'">'+data[i].nama_cabang+'</option>';
+						}
+						$('.cabangClass').html(html);
+
+					}
+				});
 			});
 		});
 	</script>

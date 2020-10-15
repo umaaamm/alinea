@@ -1,11 +1,11 @@
 <div class="page-header">
 	<div class="row">
 		<div class="col-lg-6">
-			<h3>List Proposal</h3>
+			<h3>List Makalah</h3>
 			<ol class="breadcrumb">
 				<li class="breadcrumb-item"><a href="<?php echo base_url();?>/ltr/index.html">Home</a></li>
 				<li class="breadcrumb-item">Forms  </li>
-				<li class="breadcrumb-item active">List Proposal</li>
+				<li class="breadcrumb-item active">List Makalah</li>
 			</ol>
 		</div>
 		<div class="col-lg-6">
@@ -37,17 +37,17 @@
 
 			<div class="card">
 				<div class="card-header">
-					<h5>Data Proposal yang sudah terupload</h5>
-					Dibawah ini adalah data file Proposal yang telah diupload.
+					<h5>Data Makalah yang sudah terupload</h5>
+					Dibawah ini adalah data file makalah yang telah diupload.
 				</div>
 				<div class="table-responsive">
 					<table class="table table-border-horizontal">
 						<thead>
 							<tr>
 								<th scope="col">#</th>
-								<th scope="col">Judul Proposal</th>
-								<th scope="col">Nama File Proposal</th>
-								<th scope="col">Kategori Proposal</th>
+								<th scope="col">Judul Makalah</th>
+								<th scope="col">Nama File Makalah</th>
+								<th scope="col">Kategori Makalah</th>
 								<th scope="col">Nik Karyawan</th>
 								<th scope="col">Unit Kerja</th>
 								<th scope="col">Waktu Upload</th>
@@ -55,19 +55,19 @@
 							</tr>
 						</thead>
 						<?php $a=1;
-						foreach ($listProposalAll as $key) {
+						foreach ($listMakalahAll as $key) {
 							?>
 							<tbody>
 								<tr>
 									<th scope="row"><?php echo $a;?></th>
-									<td><?php echo $key['judul_proposal'];?></td>
-									<td><?php echo $key['nama_file_proposal'];?></td>
+									<td><?php echo $key['judul_makalah'];?></td>
+									<td><?php echo $key['nama_file_makalah'];?></td>
 									<td><?php echo $key['nama_kategori'];?></td>
 									<td><?php echo $key['id_karyawan'];?></td>
 									<td><?php echo $key['nama_unit_kerja'];?> <br> <?php echo $key['nama_area'];?> - <?php echo $key['nama_cabang'];?>
 								</td>
 								<td><?php echo $key['waktu_upload'];?></td>
-								<td><a href="<?=base_url('upload/'.$key['nama_file_proposal']);?>" class="btn btn-primary" target="_blank"><i class="fa fa-file-pdf-o"></i></a></td>
+								<td><a href="<?=base_url('upload/'.$key['nama_file_makalah']);?>" class="btn btn-primary" target="_blank"><i class="fa fa-file-pdf-o"></i></a></td>
 							</tr>
 							<?php $a++; } ?>
 						</tbody>
