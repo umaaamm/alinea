@@ -53,19 +53,37 @@ $route['default_controller'] = 'ControllerUtama';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
+//LoginSuperAdmin
+$route['Login/SuperAdmin'] ='ControllerLogin/LoginSuperAdmin';
+$route['LoginMethod'] = 'ControllerLogin/loginSuperAdminCek';
+$route['LogoutSuperAdmin'] = 'ControllerLogin/logoutSuperAdmin';
+
+//Login Admin
+$route['Login/Admin'] ='ControllerLogin/LoginAdmin';
+$route['LoginMethodAdmin'] = 'ControllerLogin/loginAdminCek';
+$route['LogoutAdmin'] = 'ControllerLogin/logoutAdmin';
+
+//Login Juri
+$route['Login/Juri'] ='ControllerLogin/loginJuri';
+$route['LoginMethodJuri'] = 'ControllerLogin/loginJuriCek';
+$route['LogoutJuri'] = 'ControllerLogin/logoutJuri';
+
 //add router
+$route['SuperAdmin'] ='ControllerSuperAdmin';
 $route['Admin'] ='ControllerAdmin';
+$route['Juri'] ='ControllerJuri';
+
 
 //Admin List Makalah
 $route['AdminDivisi/ListMakalah'] ='ControllerAdminDivisi/indexListMakalah';
-$route['SuperAdmin/DataJuri'] = 'ControllerAdmin/indexManajemenJuri';
-$route['SuperAdmin/Juri'] = 'ControllerAdmin/SimpanJuri';
-$route['SuperAdmin/EditDataJuri'] = 'ControllerAdmin/EditDataJuri';
+$route['SuperAdmin/DataJuri'] = 'ControllerSuperAdmin/indexManajemenJuri';
+$route['SuperAdmin/Juri'] = 'ControllerSuperAdmin/SimpanJuri';
+$route['SuperAdmin/EditDataJuri'] = 'ControllerSuperAdmin/EditDataJuri';
 
 //Admin
-$route['Admin/ManajemenAdmin'] = 'ControllerAdmin/indexAdmin';
-$route['Admin/SimpanAdmin'] = 'ControllerAdmin/SimpanAdmin';
-$route['Admin/EditDataAdmin'] = 'ControllerAdmin/EditDataAdmin';
+$route['Admin/ManajemenAdmin'] = 'ControllerSuperAdmin/indexAdmin';
+$route['Admin/SimpanAdmin'] = 'ControllerSuperAdmin/SimpanAdmin';
+$route['Admin/EditDataAdmin'] = 'ControllerSuperAdmin/EditDataAdmin';
 
 //List Makalah
 $route['Admin/ListMakalah'] = 'ControllerAdmin/ListMakalahAll';
@@ -96,9 +114,9 @@ $route['Juri/Resume'] = 'ControllerJuri/indexListResume';
 
 
 //Super Admin
-$route['SuperAdmin/ManajemenSuperAdmin'] = 'ControllerAdmin/indexSuperAdmin';
-$route['SuperAdmin/SimpanAdmin'] = 'ControllerAdmin/SimpanSuperAdmin';
-$route['SuperAdmin/EditDataAdmin'] = 'ControllerAdmin/EditDataSuperAdmin';
+$route['SuperAdmin/ManajemenSuperAdmin'] = 'ControllerSuperAdmin/indexSuperAdmin';
+$route['SuperAdmin/SimpanAdmin'] = 'ControllerSuperAdmin/SimpanSuperAdmin';
+$route['SuperAdmin/EditDataAdmin'] = 'ControllerSuperAdmin/EditDataSuperAdmin';
 
 //Karyawan
 $route['Karyawan/UploadMakalah'] ='ControllerKaryawan/indexListMakalahKaryawan';
@@ -114,5 +132,5 @@ $route['Karyawan/SimpanResume'] ='ControllerKaryawan/uploadResumeMethod';
 
 
 //Treshold
-$route['SuperAdmin/Treshold'] ='ControllerAdmin/indexListTreshold';
-$route['SuperAdmin/EditTreshold'] ='ControllerAdmin/editTreshold';
+$route['SuperAdmin/Treshold'] ='ControllerSuperAdmin/indexListTreshold';
+$route['SuperAdmin/EditTreshold'] ='ControllerSuperAdmin/editTreshold';

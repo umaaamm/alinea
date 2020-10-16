@@ -18,12 +18,22 @@ class ControllerJuri extends CI_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see https://codeigniter.com/user_guide/general/urls.html
 	 */
+
+	function __construct(){
+		parent::__construct();
+
+		if ($this->session->userdata('status') != "loginJuri") {
+			redirect(base_url('Login/Juri'));
+		}
+	}
+
 	public function index()
 	{
-
-		$databeranda['menu'] = 'AdminDivisi';
-		$databeranda['page'] = 'ListMakalah';
-		$databeranda['content']='admin/list-makalah/list-makalah';
+		// $databeranda['menu'] = 'AdminDivisi';
+		// $databeranda['page'] = 'ListMakalah';
+		// $databeranda['content']='admin/list-makalah/list-makalah';
+		// $this->load->view('base/master',$databeranda);
+		$databeranda['content']='base/home';
 		$this->load->view('base/master',$databeranda);
 	}
 

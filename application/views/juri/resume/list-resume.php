@@ -39,6 +39,7 @@
 					Dibawah ini adalah data file Resume yang telah diupload.
 				</div>
 				<div class="table-responsive">
+					<!-- id="basic-2" -->
 					<table class="table table-border-horizontal">
 						<thead>
 							<tr>

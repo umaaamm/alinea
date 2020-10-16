@@ -2,7 +2,7 @@
               <div class="row">
                 <div class="col-lg-6">
                   <h3>
-                     Beranda</h3>
+                  Beranda</h3>
                   <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="index.html"><i data-feather="home"></i></a></li>
                     <li class="breadcrumb-item">Dashboard</li>
@@ -32,6 +32,8 @@
           </div>
           <!-- Container-fluid starts-->
           <div class="container-fluid">
+            <?php echo $this->session->flashdata('notif_l');?>
+
             <div class="row second-chart-list third-news-update">
               <div class="col-xl-4 col-lg-12 xl-50 morning-sec box-col-12">
                 <div class="card o-hidden profile-greeting">
