@@ -106,7 +106,7 @@ class ControllerLogin extends CI_Controller {
 
 		if ($cek->num_rows() > 0) {
 			foreach($cek->result() as $key){
-				$nama = $key->nam_juri;
+				$nama = $key->nama_juri;
 				$id_juri = $key->id_juri;
 			}
 

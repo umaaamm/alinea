@@ -316,9 +316,9 @@
                   <div class="according-menu"><i class="fa fa-angle-<?php echo $this->uri->rsegment(1) == 'ControllerJuri' ? 'down' : 'right' ?>"></i></div>
                 </a>
                 <ul class="nav-submenu menu-content" style="display: <?php echo $this->uri->rsegment(1) == 'ControllerJuri' ? 'block;' : 'none;' ?>">
-                  <li><a href="<?php echo base_url();?>Juri/ListMakalah" class="<?php echo $this->uri->rsegment(2) === 'indexListMakalahJuri' ?  'active' : '' ?>">List Makalah</a></li>
-                  <li><a href="<?php echo base_url();?>Juri/ListProposal" class="<?php echo $this->uri->rsegment(2) === 'indexListProposalJuri' ?  'active' : '' ?>">List Proposal</a></li>
-                  <li><a href="<?php echo base_url();?>Juri/Resume" class="<?php echo $this->uri->rsegment(2) === 'indexListResumeNasional' ?  'active' : '' ?>">List Resume Nasional</a></li>
+                  <li><a href="<?php echo base_url();?><?php if($_SESSION['role_admin'] == '7') { echo "Juri/ListMakalah"; } else { echo "SuperAdmin/ListMakalahJuri";}?>" class="<?php echo $this->uri->rsegment(2) === 'indexListMakalahJuri' ?  'active' : '' ?>">List Makalah</a></li>
+                  <li><a href="<?php echo base_url();?><?php if($_SESSION['role_admin'] == '7') { echo "Juri/ListProposal"; } else { echo "SuperAdmin/ListProposalJuri";}?>" class="<?php echo $this->uri->rsegment(2) === 'indexListProposalJuri' ?  'active' : '' ?>">List Proposal</a></li>
+                  <li><a href="<?php echo base_url();?><?php if($_SESSION['role_admin'] == '7') { echo "Juri/Resume"; } else { echo "SuperAdmin/ResumeJuri";}?>" class="<?php echo $this->uri->rsegment(2) === 'indexListResumeNasional' ?  'active' : '' ?>">List Resume Nasional</a></li>
                   <li><a href="#" class="<?php echo $this->uri->rsegment(2) === 'indexScoreMakalahNasional' ?  'active' : '' ?>">Score Makalah Nasional</a></li>
                 </ul>
               </li>

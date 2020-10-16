@@ -137,7 +137,7 @@
 
 	<script type="text/javascript">
 		function hapus($id_super_admin){
-			document.location='<?php echo base_url(); ?>ControllerAdmin/HapusDataSuperAdmin/'+$id_super_admin;
+			document.location='<?php echo base_url(); ?>ControllerSuperAdmin/HapusDataSuperAdmin/'+$id_super_admin;
 		}
 
 		function edit(id,nama,email,password,role_admin){

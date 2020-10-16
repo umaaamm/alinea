@@ -153,48 +153,45 @@
 			<div class="modal-content">
 				<form method="post" action="<?php echo base_url();?>SuperAdmin/EditDataJuri">
 					<div class="modal-header">
-						<h5 class="modal-title">Edit Data Juri</h5>
+						<h5 class="modal-title">Edit Data Makalah</h5>
 						<button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
 					</div>
 					<div class="modal-body">
 						<input type="hidden" name="id_makalah" id="id" readonly>
-						<div class="row">
-							<div class="col-md-4 mb-3">
+							<div class="form-group">
 								<label for="validationCustom01">Judul Makalah</label>
 								<input class="form-control" id="jdl_mkl" type="text" placeholder="Judul Makalah" name="judul_makalah" required="Judul Makalah Tidak Boleh Kosong">
 							</div>
-						</div>
-						<div class="row">
-							<div class="col-md-4 mb-3">
+						
+						
+							<div class="form-group">
 								<label for="exampleFormControlSelect9">Unit Kerja</label>
-								<select class="form-control digits" name="unit_kerja" id="unitKerja">
+								<select class="form-control digits" name="unit_kerja" id="unitKerjaPop">
 									<option value="-">- Pilih Salah Satu -</option>
 									<?php foreach($listUnitKerja as $row):?>
 										<option value="<?php echo $row->id_unit_kerja;?>"><?php echo $row->nama_unit_kerja;?></option>
 									<?php endforeach;?>
 								</select>
 							</div>
-						</div>
+						
 
-						<div class="row">
-							<div class="col-md-4 mb-3">
+							<div class="form-group">
 								<label for="exampleFormControlSelect9">Area/ Divisi</label>
-								<select class="unitKerjaClass form-control digits" id="areaID" name="area">
+								<select class="unitKerjaClassPop form-control digits" id="areaIDPop" name="area">
 									<option value="-">- Pilih Salah Satu -</option>
 								</select>
 							</div>
-						</div>
+						
 
-						<div class="row">
-							<div class="col-md-4 mb-3">
+						
+							<div class="form-group">
 								<label for="exampleFormControlSelect9">Cabang</label>
-								<select class="cabangClass form-control digits" name="cabang" id="cabang">
+								<select class="cabangClassPop form-control digits" name="cabang" id="cabang">
 									<option value="-">- Pilih Salah Satu -</option>
 								</select>
 							</div>
-						</div>
-						<div class="row">
-							<div class="col-md-4 mb-3">
+						
+												<div class="form-group">
 								<label for="exampleFormControlSelect9">Kategori PIA</label>
 								<select class="form-control digits" name="kategori" id="kategoriID">
 									<option value="-">- Pilih Salah Satu -</option>
@@ -203,33 +200,14 @@
 									<?php endforeach;?>
 								</select>
 							</div>
-						</div>
+	
 						<div class="row">
 							<label class="col-lg-12 control-label">Upload File</label>
+							<label id="nmakalah" class="col-lg-12 control-label"></label>
 							<div class="col-md-4 mb-3">
-								<input class="input-file" id="nmakalah" type="file" required="" name="berkas">
+								<input class="input-file" type="file" required="" name="berkas">
 							</div>
 						</div>
-
-
-						<!-- 
-						<div class="form-group">
-							<label for="validationCustom01">Nama Juri</label>
-							<input class="form-control" id="nm" type="text" placeholder="Nama Juri" name="nama_juri" required="Nama Juri Tidak Boleh Kosong">
-						</div>
-						<div class="form-group">
-							
-							<label for="validationCustom01">Tahun Menjadi Juri</label>
-							<input class="form-control digits" type="month" name="tahun" id="tahun" data-original-title="" title="">
-						</div>
-						<div class="form-group">
-							<label for="validationCustom01">Email</label>
-							<input class="form-control" id="email" type="email" placeholder="Email Juri" name="email" required="Email Juri Tidak Boleh Kosong">
-						</div>
-						<div class="form-group">
-							<label for="validationCustom01">Password</label>
-							<input class="form-control" id="pwd" type="text" placeholder="Password Juri" name="password" required="Password Tidak Boleh Kosong">
-						</div> -->
 					</div>
 					<div class="modal-footer">
 						<button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
@@ -243,7 +221,9 @@
 	<script src="<?php echo base_url();?>/assets/js/jquery-3.5.1.min.js"></script>
 
 	<script type="text/javascript">
-
+		var selectedIdUnitKerja = "";
+		var selectedIdArea = "";
+		var selectedIdCabang = "";
 		function hapus($id_makalah){
 			document.location='<?php echo base_url(); ?>ControllerKaryawan/HapusMakalah/'+$id_makalah;
 		}
@@ -251,11 +231,15 @@
 		function edit(id,jdl_mkl,unitKerja,areaID,cabang,kategoriID,nama_file_makalah){
 			$('#id').val(id);
 			$('#jdl_mkl').val(jdl_mkl);
-			$('#unitKerja').val(unitKerja);
 			$('#areaID').val(areaID);
 			$('#cabang').val(cabang);
 			$('#kategoriID').val(kategoriID);
-			$('#nmakalah').val(nama_file_makalah);
+			$('#nmakalah').text(nama_file_makalah);
+			$('#unitKerjaPop').val(unitKerja);
+			$('#unitKerjaPop').trigger('change');
+			selectedIdUnitKerja = unitKerja;
+			selectedIdArea = areaID;
+			selectedIdCabang = cabang;
 		}
 
 		$(document).ready(function(){
@@ -265,7 +249,7 @@
 					url : "<?php echo base_url();?>ControllerKaryawan/getArea",
 					method : "POST",
 					data : {id: id},
-					async : false,
+					async : true,
 					dataType : 'json',
 					success: function(data){
 						var html = '';
@@ -296,6 +280,51 @@
 							html += '<option value="'+data[i].id_cabang+'">'+data[i].nama_cabang+'</option>';
 						}
 						$('.cabangClass').html(html);
+
+					}
+				});
+			});
+		});
+
+
+		$(document).ready(function(){
+			$('#unitKerjaPop').change(function(){
+				var id=$(this).val();
+				$.ajax({
+					url : "<?php echo base_url();?>ControllerKaryawan/getArea",
+					method : "POST",
+					data : {id: id},
+					async : false,
+					dataType : 'json',
+					success: function(data){
+						var html = '';
+						var i;
+						for(i=0; i<data.length; i++){
+							html += '<option value="'+data[i].id_area+'" '+ (data[i].id_area == selectedIdArea ? 'selected' : '')+'>'+data[i].nama_area+'</option>';
+						}
+						$('.unitKerjaClassPop').html(html);
+						$('#areaIDPop').trigger('change');
+					}
+				});
+			});
+		});
+
+		$(document).ready(function(){
+			$('#areaIDPop').change(function(){
+				var id=$(this).val();
+				$.ajax({
+					url : "<?php echo base_url();?>ControllerKaryawan/getCabang",
+					method : "POST",
+					data : {id: id},
+					async : false,
+					dataType : 'json',
+					success: function(data){
+						var html = '';
+						var i;
+						for(i=0; i<data.length; i++){
+							html += '<option value="'+data[i].id_cabang+'" '+ (data[i].id_cabang == selectedIdCabang ? 'selected' : '')+'>'+data[i].nama_cabang+'</option>';
+						}
+						$('.cabangClassPop').html(html);
 
 					}
 				});

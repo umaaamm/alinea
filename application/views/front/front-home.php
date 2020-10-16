@@ -45,7 +45,7 @@
                         <img src="<?php echo base_url();?>/front/assets/images/logo/logo2.png" alt="logo">
                     </a>
                 </div>
-                <ul class="menu">
+               <!--  <ul class="menu">
                     <li>
                         <a href="#">Home</a>
                     </li>
@@ -104,7 +104,7 @@
                      <li>
                         <a href="#">Jumlah Makalah</a>
                     </li>
-                </ul>
+                </ul> -->
                 <div class="header-bar d-lg-none">
                     <span></span>
                     <span></span>

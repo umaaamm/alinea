@@ -145,142 +145,148 @@
 
 									<td><?php echo $key['nama_unit_kerja'];?></td>
 									<td><?php echo $key['nama_area'];?></td>
-									<td><button class="btn btn-primary" type="button" data-original-title="Edit Data Admin" title=""data-toggle="modal" data-target="#editModal" onclick="edit('<?php echo $key["id_admin"]; ?>','<?php echo $key["nama"]; ?>','<?php echo $key["email"]; ?>','<?php echo $key["password"]; ?>','<?php echo $key["role_admin"]; ?>')">Edit</button>
-										<button class="btn btn-danger" type="button" data-original-title="Hapus Data Admin" title="" onclick="hapus(<?php echo $key['id_admin'];?>)">Hapus</button></td>
-									</tr>
-									<?php $a++; } ?>
-								</tbody>
-							</table>
-						</div>
+									<td><button class="btn btn-primary" type="button" data-original-title="Edit Data Admin" title=""data-toggle="modal" data-target="#editModal" onclick="edit('<?php echo $key["id_admin"]; ?>','<?php echo $key["nama"]; ?>','<?php echo $key["email"]; ?>','<?php echo $key["password"]; ?>','<?php echo $key["role_admin"]; ?>','<?php echo $key["id_unit_kerja"]; ?>','<?php echo $key["id_area"]; ?>')">Edit</button>
+										<button class="btn btn-danger" type="button" data-original-title="Hapus Data Admin" title="" onclick="hapus(<?php echo $key['id_admin'];?>)">Hapus</button>
+									</td>
+								</tr>
+								<?php $a++; } ?>
+							</tbody>
+						</table>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-	<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<form method="post" action="<?php echo base_url();?>Admin/EditDataAdmin">
-					<div class="modal-header">
-						<h5 class="modal-title">Edit Data Admin</h5>
-						<button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+</div>
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<form method="post" action="<?php echo base_url();?>Admin/EditDataAdmin">
+				<div class="modal-header">
+					<h5 class="modal-title">Edit Data Admin</h5>
+					<button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+				</div>
+				<div class="modal-body">
+					<input type="hidden" name="id_admin" id="id" readonly>
+					<div class="form-group">
+						<label for="validationCustom01">Nama Admin</label>
+						<input class="form-control" id="nm" type="text" placeholder="Nama Admin" name="nama" required="Nama Admin Tidak Boleh Kosong">
 					</div>
-					<div class="modal-body">
-						<input type="hidden" name="id_admin" id="id" readonly>
-						<div class="form-group">
-							<label for="validationCustom01">Nama Admin</label>
-							<input class="form-control" id="nm" type="text" placeholder="Nama Admin" name="nama" required="Nama Admin Tidak Boleh Kosong">
-						</div>
-						
-						<div class="form-group">
-							<label for="validationCustom01">Email</label>
-							<input class="form-control" id="email" type="email" placeholder="Email Admin" name="email" required="Email Admin Tidak Boleh Kosong">
-						</div>
-						<div class="form-group">
-							<label for="validationCustom01">Password</label>
-							<input class="form-control" id="pwd" type="text" placeholder="Password Admin" name="password" required="Password Tidak Boleh Kosong">
-						</div>
-						<div class="form-group">
-							<label for="exampleFormControlSelect9">Role Admin</label>
-							<select class="form-control digits" name="role_admin" id="role_admin">
-								<option value="-">- Pilih Salah Satu -</option>
-								<option value="1">Admin Direktorat</option>
-								<option value="2">Admin Area</option>
-								<option value="3">Admin Wilayah</option>
-								<option value="4">Admin Divisi</option>
-								<option value="5">Admin Budaya Kerja</option>
-							</select>
-						</div>
-						<div class="form-group">
-								<label for="exampleFormControlSelect9">Unit Kerja</label>
-								<select class="form-control digits" name="unit_kerja" id="unitKerjaPop">
-									<option value="-">- Pilih Salah Satu -</option>
-									<?php foreach($listUnitKerja as $row):?>
-										<option value="<?php echo $row->id_unit_kerja;?>"><?php echo $row->nama_unit_kerja;?></option>
-									<?php endforeach;?>
-								</select>
-						</div>
 
-						<div class="form-group">
-								<label for="exampleFormControlSelect9">Area/ Divisi</label>
-								<select class="unitKerjaClassPop form-control digits" name="area">
-									<option value="-">- Pilih Salah Satu -</option>
-									<!-- <?php foreach($listUnitKerja as $row):?>
-										<option value="<?php echo $row->id_unit_kerja;?>"><?php echo $row->nama_unit_kerja;?></option>
-									<?php endforeach;?> -->
-								</select>
-						</div>
+					<div class="form-group">
+						<label for="validationCustom01">Email</label>
+						<input class="form-control" id="email" type="email" placeholder="Email Admin" name="email" required="Email Admin Tidak Boleh Kosong">
 					</div>
-					<div class="modal-footer">
-						<button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
-						<button class="btn btn-primary" type="submit">Simpan Perubahan</button>
+					<div class="form-group">
+						<label for="validationCustom01">Password</label>
+						<input class="form-control" id="pwd" type="text" placeholder="Password Admin" name="password" required="Password Tidak Boleh Kosong">
 					</div>
-				</form>
+					<div class="form-group">
+						<label for="exampleFormControlSelect9">Role Admin</label>
+						<select class="form-control digits" name="role_admin" id="role_admin">
+							<option value="-">- Pilih Salah Satu -</option>
+							<option value="1">Admin Direktorat</option>
+							<option value="2">Admin Area</option>
+							<option value="3">Admin Wilayah</option>
+							<option value="4">Admin Divisi</option>
+							<option value="5">Admin Budaya Kerja</option>
+						</select>
+					</div>
+					<div class="form-group">
+						<label for="exampleFormControlSelect9">Unit Kerja</label>
+						<select class="form-control digits" name="unit_kerja" id="unitKerjaPop">
+							<option value="-">- Pilih Salah Satu -</option>
+							<?php foreach($listUnitKerja as $row):?>
+								<option value="<?php echo $row->id_unit_kerja;?>"><?php echo $row->nama_unit_kerja;?></option>
+							<?php endforeach;?>
+						</select>
+					</div>
+
+					<div class="form-group">
+						<label for="exampleFormControlSelect9">Area/ Divisi</label>
+						<select class="unitKerjaClassPop form-control digits" id="areaPop" name="area">
+							<option value="-">- Pilih Salah Satu -</option>
+									</select>
+								</div>
+							</div>
+							<div class="modal-footer">
+								<button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
+								<button class="btn btn-primary" type="submit">Simpan Perubahan</button>
+							</div>
+						</form>
+					</div>
+				</div>
 			</div>
-		</div>
-	</div>
-	<script src="<?php echo base_url();?>/assets/js/jquery-3.5.1.min.js"></script>
-	<script type="text/javascript">
-		function hapus($id_juri){
-			document.location='<?php echo base_url(); ?>ControllerAdmin/HapusDataAdmin/'+$id_juri;
-		}
+			<script src="<?php echo base_url();?>/assets/js/jquery-3.5.1.min.js"></script>
+			<script type="text/javascript">
+				var selectedIdUnitKerja = "";
+				var selectedIdArea = "";
 
-		function edit(id,nama,email,password,role_admin){
-			$('#id').val(id);
-			$('#nm').val(nama);
-			$('#email').val(email);
-			$('#pwd').val(password);
-			$('#role_admin').val(role_admin);
-		}
-		$(function(){
-			$("#datepicker").datepicker({
-				format: 'yyyy-mm-dd',
-				autoclose: true,
-				todayHighlight: true,
-			});
-		});	
+				function hapus($id_admin){
+					document.location='<?php echo base_url(); ?>ControllerSuperAdmin/HapusDataAdmin/'+$id_admin;
+				}
 
-		$(document).ready(function(){
-			$('#unitKerja').change(function(){
-				var id=$(this).val();
-				$.ajax({
-					url : "<?php echo base_url();?>ControllerKaryawan/getArea",
-					method : "POST",
-					data : {id: id},
-					async : false,
-					dataType : 'json',
-					success: function(data){
-						var html = '';
-						var i;
-						for(i=0; i<data.length; i++){
-							html += '<option value="'+data[i].id_area+'">'+data[i].nama_area+'</option>';
-						}
-						$('.unitKerjaClass').html(html);
+				function edit(id,nama,email,password,role_admin,id_unit_kerja,id_area){
+					$('#id').val(id);
+					$('#nm').val(nama);
+					$('#email').val(email);
+					$('#pwd').val(password);
+					$('#role_admin').val(role_admin);
+					$('#unitKerjaPop').val(id_unit_kerja);
+					$('#unitKerjaPop').trigger('change');
+					selectedIdUnitKerja = id_unit_kerja;
+					selectedIdArea = id_area;
+				}
 
-					}
+				$(function(){
+					$("#datepicker").datepicker({
+						format: 'yyyy-mm-dd',
+						autoclose: true,
+						todayHighlight: true,
+					});
+				});	
+
+				$(document).ready(function(){
+					$('#unitKerja').change(function(){
+						var id=$(this).val();
+						$.ajax({
+							url : "<?php echo base_url();?>ControllerGeneral/getArea",
+							method : "POST",
+							data : {id: id},
+							async : true,
+							dataType : 'json',
+							success: function(data){
+								var html = '';
+								var i;
+								for(i=0; i<data.length; i++){
+									html += '<option value="'+data[i].id_area+'">'+data[i].nama_area+'</option>';
+								}
+								$('.unitKerjaClass').html(html);
+
+							}
+						});
+					});
 				});
-			});
-		});
 
-		$(document).ready(function(){
-			$('#areaID').change(function(){
-				var id=$(this).val();
-				$.ajax({
-					url : "<?php echo base_url();?>ControllerKaryawan/getCabang",
-					method : "POST",
-					data : {id: id},
-					async : false,
-					dataType : 'json',
-					success: function(data){
-						var html = '';
-						var i;
-						for(i=0; i<data.length; i++){
-							html += '<option value="'+data[i].id_cabang+'">'+data[i].nama_cabang+'</option>';
-						}
-						$('.cabangClass').html(html);
+				$(document).ready(function(){
+					$('#unitKerjaPop').change(function(){
+						var id=$(this).val();
+						$.ajax({
+							url : "<?php echo base_url();?>ControllerGeneral/getArea",
+							method : "POST",
+							data : {id: id},
+							async : true,
+							dataType : 'json',
+							success: function(data){
+								var html = '';
+								var i;
+								for(i=0; i<data.length; i++){
+									html += '<option value="'+data[i].id_area+'" '+ (data[i].id_area == selectedIdArea ? 'selected' : '') +'>'+data[i].nama_area+'</option>';
+								}
+								$('.unitKerjaClassPop').html(html);
 
-					}
+							}
+						});
+					});
 				});
-			});
-		});
-	</script>
+			</script>

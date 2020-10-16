@@ -28,7 +28,6 @@ class ControllerSuperAdmin extends CI_Controller {
 		}
 	}
 
-
 	public function index()
 	{
 		// $databeranda['jumlah_pengaduan']=$this->db->query("select count(id_user) as total from tbl_user");
@@ -54,7 +53,8 @@ class ControllerSuperAdmin extends CI_Controller {
 		$data['treshold_area']=$this->input->post("treshold_area");
 		$data['treshold_wilayah']=$this->input->post("treshold_wilayah");
 		$data['treshold_direktorat']=$this->input->post("treshold_direktorat");
-		
+		$data['treshold_divisi']=$this->input->post("treshold_divisi");
+
 		$where=array('id_treshold'=>$this->input->post("id_treshold"));
 		$this->RsModel->EditData("tbl_treshold",$data,$where);
 
@@ -120,6 +120,15 @@ class ControllerSuperAdmin extends CI_Controller {
 		$this->db->insert('tbl_admin',$data);
 		$this->session->set_flashdata("notif","<div class='alert alert-success'>Data berhasil di simpan</div>");
 		header('location:'.base_url().'Admin/ManajemenAdmin');
+	}
+
+	public function GetDataAdmin(){
+		$databeranda['listUnitKerja'] = $this->db->query('select * from tbl_unit_kerja')->result();
+		$id=$this->uri->segment(3);
+		$where=array('id_admin'=>$id);
+		$databeranda['data_edit']=$this->db->query("select * from tbl_admin where id_admin='".$id."' ")->result_array();
+		$databeranda['content']='admin/admin/edit-admin';
+		$this->load->view('base/master',$databeranda);
 	}
 
 	public function EditDataAdmin(){
@@ -192,6 +201,19 @@ class ControllerSuperAdmin extends CI_Controller {
 		$this->load->view('base/master',$databeranda);
 
 	}
+
+	public function ListResumeAll(){
+		$data['listKategori'] = $this->db->query('select * from tbl_kategori')->result();
+		$data['listUnitKerja'] = $this->db->query('select * from tbl_unit_kerja')->result();
+		$data['listMakalah'] = $this->db->query('select * from tb_list_makalah')->result();
+		$data['dataListResume']= $this->db->query('SELECT * from tbl_resume_nasional JOIN tb_list_makalah ON tbl_resume_nasional.id_makalah = tb_list_makalah.id_makalah JOIN tbl_unit_kerja ON tbl_resume_nasional.id_unit_kerja = tbl_unit_kerja.id_unit_kerja JOIN tbl_area ON tbl_resume_nasional.id_area = tbl_area.id_area
+			JOIN tbl_cabang ON tbl_resume_nasional.id_cabang = tbl_cabang.id_cabang
+			JOIN tbl_kategori ON tb_list_makalah.id_kategori = tbl_kategori.id_kategori ORDER BY tbl_resume_nasional.id_resume_nasional DESC ')->result_array();
+		$data['content']='juri/resume/list-resume';
+		$this->load->view('base/master',$data);
+	}
+
+	
 
 
 

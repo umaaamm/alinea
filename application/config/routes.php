@@ -50,7 +50,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |		my-controller/my-method	-> my_controller/my_method
 */
 $route['default_controller'] = 'ControllerUtama';
-$route['404_override'] = '';
+$route['404_override'] = 'ControllerError';
 $route['translate_uri_dashes'] = FALSE;
 
 //LoginSuperAdmin
@@ -93,10 +93,10 @@ $route['Admin/SimpanAdmin'] = 'ControllerSuperAdmin/SimpanAdmin';
 $route['Admin/EditDataAdmin'] = 'ControllerSuperAdmin/EditDataAdmin';
 
 //List Makalah
-$route['Admin/ListMakalah'] = 'ControllerAdmin/ListMakalahAll';
+$route['Admin/ListMakalah'] = 'ControllerGeneral/ListMakalahAll';
 
 //ListProposal
-$route['Admin/ListProposal'] = 'ControllerAdmin/ListProposalAll';
+$route['Admin/ListProposal'] = 'ControllerGeneral/ListProposalAll';
 
 
 //Divisi
@@ -141,3 +141,11 @@ $route['Karyawan/SimpanResume'] ='ControllerKaryawan/uploadResumeMethod';
 //Treshold
 $route['SuperAdmin/Treshold'] ='ControllerSuperAdmin/indexListTreshold';
 $route['SuperAdmin/EditTreshold'] ='ControllerSuperAdmin/editTreshold';
+
+//JuriSuperAdmin
+$route['SuperAdmin/ListMakalahJuri'] ='ControllerSuperAdmin/ListMakalahAll';
+$route['SuperAdmin/ListProposalJuri'] ='ControllerSuperAdmin/ListProposalAll';
+$route['SuperAdmin/ResumeJuri'] = 'ControllerSuperAdmin/ListResumeAll';
+
+
+

@@ -45,6 +45,7 @@
 							<tr>
 								<th scope="col">#</th>
 								<th scope="col">Treshold Direktorat</th>
+								<th scope="col">Treshold Divisi</th>
 								<th scope="col">Treshold Area</th>
 								<th scope="col">Treshold Wilayah</th>
 								<th scope="col">Treshold Nasional</th>
@@ -60,6 +61,7 @@
 									<tr>
 										<th scope="row"><?php echo $a;?></th>
 										<td><input class="form-control" id="treshold_direktorat" type="text" placeholder="Treshold Makalah Direktorat" name="treshold_direktorat" required="Treshold Makalah Direktorat Tidak Boleh Kosong" value="<?php echo $key['treshold_direktorat'];?>" disabled></td>
+										<td><input class="form-control" id="treshold_divisi" type="text" placeholder="Treshold Makalah Divisi" name="treshold_divisi" required="Treshold Makalah Divisi Tidak Boleh Kosong" value="<?php echo $key['treshold_divisi'];?>" disabled></td></td>
 										<td><input class="form-control" id="treshold_area" type="text" placeholder="Treshold Makalah Area" name="treshold_area" required="Treshold Makalah Area Tidak Boleh Kosong" value="<?php echo $key['treshold_area'];?>" disabled></td>
 										<td><input class="form-control" id="treshold_wilayah" type="text" placeholder="Treshold Makalah Wilayah" name="treshold_wilayah" required="Treshold Makalah Wilayah Tidak Boleh Kosong" value="<?php echo $key['treshold_wilayah'];?>" disabled></td>
 										<td><input class="form-control" id="treshold_nasional" type="text" placeholder="Treshold Makalah Nasional" name="treshold_nasional" required="Treshold Makalah Nasional Tidak Boleh Kosong" value="<?php echo $key['treshold_nasional'];?>" disabled></td>
@@ -85,6 +87,7 @@
 		document.getElementById("treshold_area").disabled = false;
 		document.getElementById("treshold_wilayah").disabled = false;
 		document.getElementById("treshold_nasional").disabled = false;
+		document.getElementById("treshold_divisi").disabled = false;
 	}
 </script>
 
