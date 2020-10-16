@@ -27,7 +27,7 @@ class ControllerLogin extends CI_Controller {
 	}
 
 	public function LoginKaryawan(){
-		$this->load->view('login/LoginSuperAdmin');
+		$this->load->view('login/LoginKaryawan');
 	}
 
 	public function LoginJuri(){
@@ -125,6 +125,42 @@ class ControllerLogin extends CI_Controller {
 				redirect('Login/Juri');
 		}
 
+	}
+
+	public function loginKaryawanCek(){
+		$nik = $this->input->post('nik');
+		$password = $this->input->post('password');
+		$cek = $this->db->query("SELECT * FROM tbl_karyawan WHERE nik='$nik' AND password='$password' ");
+
+		if ($cek->num_rows() > 0) {
+			foreach($cek->result() as $key){
+				$nama = $key->nama_karyawan;
+				$id_karyawan = $key->id_karyawan;
+				$nik = $key->nik;
+			}
+
+			$data_session = array(
+				'id_karyawan' => $id_karyawan,
+				'nik' => $nik,
+				'nama' => $nama,
+				'status' => "loginKaryawan",
+				'logout' => "LogoutKaryawan",
+				'role_admin' => '6',
+				);
+			$this->session->set_userdata($data_session);
+			$this->session->set_flashdata("notif_l","<div class='alert alert-success'>Selamat Anda Berhasil Login</div>");
+				redirect('ControllerKaryawan');
+		}else{
+			$this->session->set_flashdata("notif_l","<div class='alert alert-danger'>Password atau Username anda Salah</div>");
+				redirect('Login/Karyawan');
+		}
+
+	}
+
+	function logoutKaryawan(){
+		$this->session->sess_destroy();
+		redirect(base_url().'Login/Karyawan');
+	
 	}
 
 	function logoutJuri(){

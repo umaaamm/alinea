@@ -68,10 +68,17 @@ $route['Login/Juri'] ='ControllerLogin/loginJuri';
 $route['LoginMethodJuri'] = 'ControllerLogin/loginJuriCek';
 $route['LogoutJuri'] = 'ControllerLogin/logoutJuri';
 
+//Login Karyawan
+$route['Login/Karyawan'] ='ControllerLogin/loginKaryawan';
+$route['LoginMethodKaryawan'] = 'ControllerLogin/loginKaryawanCek';
+$route['LogoutKaryawan'] = 'ControllerLogin/logoutKaryawan';
+
 //add router
 $route['SuperAdmin'] ='ControllerSuperAdmin';
 $route['Admin'] ='ControllerAdmin';
 $route['Juri'] ='ControllerJuri';
+$route['Karyawan'] ='ControllerKaryawan';
+
 
 
 //Admin List Makalah

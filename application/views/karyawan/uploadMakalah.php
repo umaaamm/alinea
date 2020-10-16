@@ -129,7 +129,7 @@
 									<td><?php echo $key['judul_makalah'];?></td>
 									<td><?php echo $key['nama_file_makalah'];?></td>
 									<td><?php echo $key['id_kategori'];?></td>
-									<td><?php echo $key['id_karyawan'];?></td>
+									<td><?php echo $key['nik'];?></td>
 									<td><?php echo $key['id_unit_kerja'];?></td>
 									<td><?php echo $key['id_area'];?></td>
 									<td><?php echo $key['id_cabang'];?></td>

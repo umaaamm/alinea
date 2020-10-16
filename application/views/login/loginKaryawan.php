@@ -9,7 +9,7 @@
     <meta name="author" content="pixelstrap">
     <link rel="icon" href="<?php echo base_url();?>/assets/images/favicon.png" type="image/x-icon">
     <link rel="shortcut icon" href="<?php echo base_url();?>/assets/images/favicon.png" type="image/x-icon">
-    <title>Cuba - Premium Admin Template</title>
+    <title>Alinea</title>
     <!-- Google font-->
     <link href="https://fonts.googleapis.com/css?family=Rubik:400,400i,500,500i,700,700i&amp;display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i,900&amp;display=swap" rel="stylesheet">
@@ -59,39 +59,41 @@
                     <div class="card-body">
                       <div class="cont text-center">
                         <div> 
-                          <form class="theme-form">
-                            <h4>LOGIN</h4>
-                            <h6>Enter your Username and Password</h6>
-                            <div class="form-group">
-                              <label class="col-form-label pt-0">Your Name</label>
-                              <input class="form-control" type="text" required="">
-                            </div>
-                            <div class="form-group">
-                              <label class="col-form-label">Password</label>
-                              <input class="form-control" type="password" required="">
-                            </div>
-                            <div class="checkbox p-0">
-                              <input id="checkbox1" type="checkbox">
-                              <label for="checkbox1">Remember me</label>
-                            </div>
-                            <div class="form-group row mt-3 mb-0">
-                              <button class="btn btn-primary btn-block" type="submit">LOGIN</button>
-                            </div>
-                            <div class="login-divider"></div>
-                            <div class="social mt-3">
-                              <div class="row btn-showcase">
-                                <div class="col-md-4 col-sm-6">
-                                  <button class="btn social-btn btn-fb">Facebook</button>
-                                </div>
-                                <div class="col-md-4 col-sm-6">
-                                  <button class="btn social-btn btn-twitter">Twitter</button>
-                                </div>
-                                <div class="col-md-4 col-sm-6">
-                                  <button class="btn social-btn btn-google">Google + </button>
-                                </div>
+                          <form class="theme-form" method="post" action="<?php echo base_url();?>LoginMethodKaryawan">
+                          <?php echo $this->session->flashdata('notif_l');?>
+
+                          <h4>LOGIN KARYAWAN</h4>
+                          <h6>Enter your Email and Password</h6>
+                          <div class="form-group">
+                            <label class="col-form-label pt-0">Your NIK</label>
+                            <input class="form-control" type="text" required="" name="nik">
+                          </div>
+                          <div class="form-group">
+                            <label class="col-form-label">Password</label>
+                            <input class="form-control" type="password" name="password" required="">
+                          </div>
+                          <div class="checkbox p-0">
+                            <input id="checkbox1" type="checkbox">
+                            <label for="checkbox1">Remember me</label>
+                          </div>
+                          <div class="form-group row mt-3 mb-0">
+                            <button class="btn btn-primary btn-block" type="submit">LOGIN</button>
+                          </div>
+                          <div class="login-divider"></div>
+                          <div class="social mt-3">
+                            <div class="row btn-showcase">
+                              <div class="col-md-4 col-sm-6">
+                                <button class="btn social-btn btn-fb">Facebook</button>
+                              </div>
+                              <div class="col-md-4 col-sm-6">
+                                <button class="btn social-btn btn-twitter">Twitter</button>
+                              </div>
+                              <div class="col-md-4 col-sm-6">
+                                <button class="btn social-btn btn-google">Google + </button>
                               </div>
                             </div>
-                          </form>
+                          </div>
+                        </form>
                         </div>
                         <div class="sub-cont">
                           <div class="img">

@@ -155,6 +155,14 @@
                     <p class="mb-0 font-roboto">Admin Budaya Kerja <i class="middle fa fa-angle-down"></i></p>
                   <?php } ?>
 
+                  <?php if($_SESSION['role_admin'] == '6') { ?>
+                    <p class="mb-0 font-roboto">Karyawan <i class="middle fa fa-angle-down"></i></p>
+                  <?php } ?>
+
+                  <?php if($_SESSION['role_admin'] == '7') { ?>
+                    <p class="mb-0 font-roboto">Juri <i class="middle fa fa-angle-down"></i></p>
+                  <?php } ?>
+
                 </div>
               </div>
               <ul class="profile-dropdown onhover-show-div">

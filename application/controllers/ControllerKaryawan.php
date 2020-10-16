@@ -18,11 +18,21 @@ class ControllerKaryawan extends CI_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see https://codeigniter.com/user_guide/general/urls.html
 	 */
+
+	function __construct(){
+		parent::__construct();
+
+		if ($this->session->userdata('status') != "loginKaryawan") {
+			redirect(base_url('Login/Karyawan'));
+		}
+	}
 	public function index()
 	{
-		$databeranda['menu'] = 'AdminDivisi';
-		$databeranda['page'] = 'ListMakalah';
-		$databeranda['content']='admin/list-makalah/list-makalah';
+		// $databeranda['menu'] = 'AdminDivisi';
+		// $databeranda['page'] = 'ListMakalah';
+		// $databeranda['content']='admin/list-makalah/list-makalah';
+		// $this->load->view('base/master',$databeranda);
+		$databeranda['content']='base/home';
 		$this->load->view('base/master',$databeranda);
 	}
 
@@ -31,7 +41,7 @@ class ControllerKaryawan extends CI_Controller {
 	{
 		$data['listKategori'] = $this->db->query('select * from tbl_kategori')->result();
 		$data['listUnitKerja'] = $this->db->query('select * from tbl_unit_kerja')->result();
-		$data['dataListMakalah']= $this->db->query('select * from tb_list_makalah where id_karyawan="200002" ORDER BY id_makalah DESC ')->result_array();
+		$data['dataListMakalah']= $this->db->query('select * from tb_list_makalah JOIN tbl_karyawan ON tb_list_makalah.id_karyawan = tbl_karyawan.id_karyawan where tb_list_makalah.id_karyawan="'.$_SESSION['id_karyawan'].'" ORDER BY id_makalah DESC ')->result_array();
 		$data['content']='karyawan/uploadMakalah';
 		$this->load->view('base/master',$data);
 	}
@@ -94,7 +104,7 @@ class ControllerKaryawan extends CI_Controller {
 		$data['nama_file_makalah'] = $this->upload->data("file_name");
 		$data['judul_makalah'] = $this->input->post('judul_makalah');
 		$data['waktu_upload'] = date('Y-m-d H:i:s');
-		$data['id_karyawan'] = '200002';
+		$data['id_karyawan'] = $_SESSION['id_karyawan'];
 		$data['id_unit_kerja'] = $this->input->post('unit_kerja');
 		$data['id_area'] = $this->input->post('area');
 		$data['id_cabang'] = $this->input->post('cabang');
@@ -108,7 +118,7 @@ class ControllerKaryawan extends CI_Controller {
 
 
 	public function hasilPlagiat(){
-		$data['dataListMakalah']= $this->db->query('select * from tb_list_makalah where id_karyawan="200002" ORDER BY id_makalah DESC ')->result_array();
+		$data['dataListMakalah']= $this->db->query('select * from tb_list_makalah where id_karyawan="'.$_SESSION['id_karyawan'].'" ORDER BY id_makalah DESC ')->result_array();
 		$data['content']='karyawan/hasilChecker';
 		$this->load->view('base/master',$data);
 	}
@@ -143,7 +153,7 @@ class ControllerKaryawan extends CI_Controller {
 	{
 		$data['listKategori'] = $this->db->query('select * from tbl_kategori')->result();
 		$data['listUnitKerja'] = $this->db->query('select * from tbl_unit_kerja')->result();
-		$data['dataListProposal']= $this->db->query('select * from tbl_list_proposal where id_karyawan="200002" ORDER BY id_proposal DESC ')->result_array();
+		$data['dataListProposal']= $this->db->query('select * from tbl_list_proposal JOIN tbl_karyawan ON tbl_list_proposal.id_karyawan = tbl_karyawan.id_karyawan where tbl_list_proposal.id_karyawan="'.$_SESSION['id_karyawan'].'" ORDER BY id_proposal DESC ')->result_array();
 		$data['content']='karyawan/proposal/uploadProposal';
 		$this->load->view('base/master',$data);
 	}
@@ -185,7 +195,7 @@ class ControllerKaryawan extends CI_Controller {
 		$data['nama_file_proposal'] = $this->upload->data("file_name");
 		$data['judul_proposal'] = $this->input->post('judul_proposal');
 		$data['waktu_upload'] = date('Y-m-d H:i:s');
-		$data['id_karyawan'] = '200002';
+		$data['id_karyawan'] = $_SESSION['id_karyawan'];
 		$data['id_unit_kerja'] = $this->input->post('unit_kerja');
 		$data['id_area'] = $this->input->post('area');
 		$data['id_cabang'] = $this->input->post('cabang');
@@ -196,7 +206,7 @@ class ControllerKaryawan extends CI_Controller {
 	}
 
 	public function hasilPlagiatProposal(){
-		$data['dataListProposal']= $this->db->query('select * from tbl_list_proposal where id_karyawan="200002" ORDER BY id_proposal DESC ')->result_array();
+		$data['dataListProposal']= $this->db->query('select * from tbl_list_proposal where id_karyawan="'.$_SESSION['id_karyawan'].'" ORDER BY id_proposal DESC ')->result_array();
 		$data['content']='karyawan/proposal/hasilCheckerProposal';
 		$this->load->view('base/master',$data);
 	}
@@ -231,10 +241,12 @@ class ControllerKaryawan extends CI_Controller {
 	{
 		$data['listKategori'] = $this->db->query('select * from tbl_kategori')->result();
 		$data['listUnitKerja'] = $this->db->query('select * from tbl_unit_kerja')->result();
-		$data['listMakalah'] = $this->db->query('select * from tb_list_makalah where id_karyawan="200002" ')->result();
+		$data['listMakalah'] = $this->db->query('select * from tb_list_makalah where id_karyawan="'.$_SESSION['id_karyawan'].'" ')->result();
 		$data['dataListResume']= $this->db->query('SELECT * from tbl_resume_nasional JOIN tb_list_makalah ON tbl_resume_nasional.id_makalah = tb_list_makalah.id_makalah JOIN tbl_unit_kerja ON tbl_resume_nasional.id_unit_kerja = tbl_unit_kerja.id_unit_kerja JOIN tbl_area ON tbl_resume_nasional.id_area = tbl_area.id_area
 			JOIN tbl_cabang ON tbl_resume_nasional.id_cabang = tbl_cabang.id_cabang
-			JOIN tbl_kategori ON tb_list_makalah.id_kategori = tbl_kategori.id_kategori where tbl_resume_nasional.id_karyawan="200002" ORDER BY tbl_resume_nasional.id_resume_nasional DESC ')->result_array();
+			JOIN tbl_kategori ON tb_list_makalah.id_kategori = tbl_kategori.id_kategori 
+			JOIN tbl_karyawan ON tbl_resume_nasional.id_karyawan =  tbl_karyawan.id_karyawan
+			where tbl_resume_nasional.id_karyawan="'.$_SESSION['id_karyawan'].'" ORDER BY tbl_resume_nasional.id_resume_nasional DESC ')->result_array();
 		$data['content']='karyawan/resume/uploadResume';
 		$this->load->view('base/master',$data);
 	}
@@ -256,7 +268,7 @@ class ControllerKaryawan extends CI_Controller {
 		$data['nama_file'] = $this->upload->data("file_name");
 		$data['id_makalah'] = $this->input->post("id_makalah");
 		$data['judul_resume'] = $this->input->post('judul_resume');
-		$data['id_karyawan'] = '200002';
+		$data['id_karyawan'] = $_SESSION['id_karyawan'];
 		$this->db->insert('tbl_resume_nasional',$data);
 		$this->session->set_flashdata("notif","<div class='alert alert-success'>Data berhasil di Upload</div>");
 		header('location:'.base_url().'Karyawan/UploadResume');
