@@ -46,7 +46,7 @@ class ControllerLogin extends CI_Controller {
 		if ($cek->num_rows() > 0) {
 			foreach($cek->result() as $key){
 				$nama = $key->nama;
-				$id_superAdmin = $key->id_super_admin;
+				$id_super_admin = $key->id_super_admin;
 			}
 
 			$data_session = array(
