@@ -139,6 +139,12 @@ $route['Karyawan/HasilPlagiatProposal'] ='ControllerKaryawan/hasilPlagiatProposa
 $route['Karyawan/UploadResume'] ='ControllerKaryawan/indexListResumeKaryawan';
 $route['Karyawan/SimpanResume'] ='ControllerKaryawan/uploadResumeMethod';
 
+$route['Karyawan/EditMakalahKaryawan'] = 'ControllerKaryawan/editMakalah';
+$route['Karyawan/EditProposalKaryawan'] = 'ControllerKaryawan/editProposal';
+$route['Karyawan/EditResumeKaryawan'] = 'ControllerKaryawan/editResume';
+
+
+
 
 //Treshold
 $route['SuperAdmin/Treshold'] ='ControllerSuperAdmin/indexListTreshold';

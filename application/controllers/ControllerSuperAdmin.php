@@ -218,9 +218,9 @@ class ControllerSuperAdmin extends CI_Controller {
 	public function checkPlagiatProposalSuperAdmin(){
 
 		//cekToken
-		$token = $this->GetTokenUnichekSuperAdmin();
-		$dataToken = json_decode($token, TRUE);
-		$this->session->set_userdata('tokenUnicheck', $dataToken['access_token']);
+		$tokencheckPlagiatProposalSuperAdmin = $this->GetTokenUnichekSuperAdmin();
+		$dataTokencheckPlagiatProposalSuperAdmin = json_decode($token, TRUE);
+		$this->session->set_userdata('tokenUnicheck', $dataTokencheckPlagiatProposalSuperAdmin['access_token']);
 
 		$id=$this->uri->segment(3);
 
@@ -241,9 +241,9 @@ class ControllerSuperAdmin extends CI_Controller {
 
 	public function checkPlagiatMakalah(){
 		//cekToken
-		$token = $this->GetTokenUnichekSuperAdmin();
-		$dataToken = json_decode($token, TRUE);
-		$this->session->set_userdata('tokenUnicheck', $dataToken['access_token']);
+		$tokencheckPlagiatMakalah = $this->GetTokenUnichekSuperAdmin();
+		$dataTokencheckPlagiatMakalah = json_decode($tokencheckPlagiatMakalah, TRUE);
+		$this->session->set_userdata('tokenUnicheck', $dataTokencheckPlagiatMakalah['access_token']);
 
 		$id=$this->uri->segment(3);
 
@@ -306,10 +306,10 @@ class ControllerSuperAdmin extends CI_Controller {
 		$ch = curl_init($url);
 
 		/* Array Parameter Data */
-		$data = ['grant_type'=>'client_credentials', 'client_id'=>'ad20206ddf95213c4573','client_secret'=>'c94aff353d3cbeacfbe0c86183393024db827759'];
+		$dataGetTokenUnichekSuperAdmin = ['grant_type'=>'client_credentials', 'client_id'=>'ad20206ddf95213c4573','client_secret'=>'c94aff353d3cbeacfbe0c86183393024db827759'];
 
 		/* pass encoded JSON string to the POST fields */
-		curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+		curl_setopt($ch, CURLOPT_POSTFIELDS, $dataGetTokenUnichekSuperAdmin);
 
 		/* set the content type json */
 		curl_setopt($ch, CURLOPT_HTTPHEADER, array(

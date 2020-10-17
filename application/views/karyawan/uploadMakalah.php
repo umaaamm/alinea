@@ -151,61 +151,61 @@
 	<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
-				<form method="post" action="<?php echo base_url();?>SuperAdmin/EditDataJuri">
+				<form method="post" enctype="multipart/form-data" action="<?php echo base_url();?>Karyawan/EditMakalahKaryawan">
 					<div class="modal-header">
 						<h5 class="modal-title">Edit Data Makalah</h5>
 						<button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
 					</div>
 					<div class="modal-body">
 						<input type="hidden" name="id_makalah" id="id" readonly>
-							<div class="form-group">
-								<label for="validationCustom01">Judul Makalah</label>
-								<input class="form-control" id="jdl_mkl" type="text" placeholder="Judul Makalah" name="judul_makalah" required="Judul Makalah Tidak Boleh Kosong">
-							</div>
+						<div class="form-group">
+							<label for="validationCustom01">Judul Makalah</label>
+							<input class="form-control" id="jdl_mkl" type="text" placeholder="Judul Makalah" name="judul_makalah" required="Judul Makalah Tidak Boleh Kosong">
+						</div>
 						
 						
-							<div class="form-group">
-								<label for="exampleFormControlSelect9">Unit Kerja</label>
-								<select class="form-control digits" name="unit_kerja" id="unitKerjaPop">
-									<option value="-">- Pilih Salah Satu -</option>
-									<?php foreach($listUnitKerja as $row):?>
-										<option value="<?php echo $row->id_unit_kerja;?>"><?php echo $row->nama_unit_kerja;?></option>
-									<?php endforeach;?>
-								</select>
-							</div>
-						
-
-							<div class="form-group">
-								<label for="exampleFormControlSelect9">Area/ Divisi</label>
-								<select class="unitKerjaClassPop form-control digits" id="areaIDPop" name="area">
-									<option value="-">- Pilih Salah Satu -</option>
-								</select>
-							</div>
+						<div class="form-group">
+							<label for="exampleFormControlSelect9">Unit Kerja</label>
+							<select class="form-control digits" name="unit_kerja" id="unitKerjaPop">
+								<option value="-">- Pilih Salah Satu -</option>
+								<?php foreach($listUnitKerja as $row):?>
+									<option value="<?php echo $row->id_unit_kerja;?>"><?php echo $row->nama_unit_kerja;?></option>
+								<?php endforeach;?>
+							</select>
+						</div>
 						
 
+						<div class="form-group">
+							<label for="exampleFormControlSelect9">Area/ Divisi</label>
+							<select class="unitKerjaClassPop form-control digits" id="areaIDPop" name="area">
+								<option value="-">- Pilih Salah Satu -</option>
+							</select>
+						</div>
 						
-							<div class="form-group">
-								<label for="exampleFormControlSelect9">Cabang</label>
-								<select class="cabangClassPop form-control digits" name="cabang" id="cabang">
-									<option value="-">- Pilih Salah Satu -</option>
-								</select>
-							</div>
+
 						
-												<div class="form-group">
-								<label for="exampleFormControlSelect9">Kategori PIA</label>
-								<select class="form-control digits" name="kategori" id="kategoriID">
-									<option value="-">- Pilih Salah Satu -</option>
-									<?php foreach($listKategori as $row_k):?>
-										<option value="<?php echo $row_k->id_kategori;?>"><?php echo $row_k->nama_kategori;?></option>
-									<?php endforeach;?>
-								</select>
-							</div>
-	
+						<div class="form-group">
+							<label for="exampleFormControlSelect9">Cabang</label>
+							<select class="cabangClassPop form-control digits" name="cabang" id="cabang">
+								<option value="-">- Pilih Salah Satu -</option>
+							</select>
+						</div>
+						
+						<div class="form-group">
+							<label for="exampleFormControlSelect9">Kategori PIA</label>
+							<select class="form-control digits" name="kategori" id="kategoriID">
+								<option value="-">- Pilih Salah Satu -</option>
+								<?php foreach($listKategori as $row_k):?>
+									<option value="<?php echo $row_k->id_kategori;?>"><?php echo $row_k->nama_kategori;?></option>
+								<?php endforeach;?>
+							</select>
+						</div>
+
 						<div class="row">
 							<label class="col-lg-12 control-label">Upload File</label>
 							<label id="nmakalah" class="col-lg-12 control-label"></label>
 							<div class="col-md-4 mb-3">
-								<input class="input-file" type="file" required="" name="berkas">
+								<input class="input-file" type="file" name="berkas">
 							</div>
 						</div>
 					</div>

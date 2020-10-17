@@ -75,9 +75,9 @@ class ControllerKaryawan extends CI_Controller {
 		$this->load->library('upload', $config);
 
 		if ($this->session->userdata('tokenUnicheck') === null) {
-			$token = $this->GetTokenUnichek();
-			$data = json_decode($token, TRUE);
-			$this->session->set_userdata('tokenUnicheck', $data['access_token']);
+			$tokenUpload = $this->GetTokenUnichek();
+			$dataToken = json_decode($tokenUpload, TRUE);
+			$this->session->set_userdata('tokenUnicheck', $dataToken['access_token']);
 		}
 
 		if ( ! $this->upload->do_upload('berkas')){
@@ -126,9 +126,9 @@ class ControllerKaryawan extends CI_Controller {
 	public function checkPlagiat(){
 
 		//cekToken
-		$token = $this->GetTokenUnichek();
-		$dataToken = json_decode($token, TRUE);
-		$this->session->set_userdata('tokenUnicheck', $dataToken['access_token']);
+		$tokencheckPlagiat = $this->GetTokenUnichek();
+		$dataTokencheckPlagiat = json_decode($tokencheckPlagiat, TRUE);
+		$this->session->set_userdata('tokenUnicheck', $dataTokencheckPlagiat['access_token']);
 
 		$id=$this->uri->segment(3);
 
@@ -137,6 +137,14 @@ class ControllerKaryawan extends CI_Controller {
 
 		$cek = $this->checkHasilSimilariti($query['0']['id_similarity']);
 		$respose_cek_unichek = json_decode($cek,true);
+
+		$cekEmpty = isset($respose_cek_unichek['errors']) ? $respose_cek_unichek['errors'] : '';
+
+		if ($cekEmpty != '') {
+			$this->session->set_flashdata("notif","<div class='alert alert-danger'>Gagal Melakukan Pengecekan ke Unicheck</div>");
+			header('location:'.base_url().'Karyawan/HasilPlagiat');
+			return;
+		}
 
 		$where=array('id_makalah'=>$id);
 		$data['status_simirariti'] = $respose_cek_unichek['data']['attributes']['state'];
@@ -153,7 +161,11 @@ class ControllerKaryawan extends CI_Controller {
 	{
 		$data['listKategori'] = $this->db->query('select * from tbl_kategori')->result();
 		$data['listUnitKerja'] = $this->db->query('select * from tbl_unit_kerja')->result();
-		$data['dataListProposal']= $this->db->query('select * from tbl_list_proposal JOIN tbl_karyawan ON tbl_list_proposal.id_karyawan = tbl_karyawan.id_karyawan where tbl_list_proposal.id_karyawan="'.$_SESSION['id_karyawan'].'" ORDER BY id_proposal DESC ')->result_array();
+		$data['dataListProposal']= $this->db->query('select DISTINCT * from tbl_list_proposal 
+			JOIN tbl_unit_kerja ON tbl_list_proposal.id_unit_kerja = tbl_unit_kerja.id_unit_kerja
+			JOIN tbl_area ON tbl_list_proposal.id_area = tbl_area.id_area
+			JOIN tbl_cabang ON tbl_list_proposal.id_cabang = tbl_cabang.id_cabang
+			JOIN tbl_karyawan ON tbl_list_proposal.id_karyawan = tbl_karyawan.id_karyawan where tbl_list_proposal.id_karyawan="'.$_SESSION['id_karyawan'].'" ORDER BY id_proposal DESC ')->result_array();
 		$data['content']='karyawan/proposal/uploadProposal';
 		$this->load->view('base/master',$data);
 	}
@@ -166,9 +178,9 @@ class ControllerKaryawan extends CI_Controller {
 		$this->load->library('upload', $config);
 
 		if ($this->session->userdata('tokenUnicheck') === null) {
-			$token = $this->GetTokenUnichek();
-			$data = json_decode($token, TRUE);
-			$this->session->set_userdata('tokenUnicheck', $data['access_token']);
+			$tokenuploadProposalMethod = $this->GetTokenUnichek();
+			$datauploadProposalMethod = json_decode($tokenuploadProposalMethod, TRUE);
+			$this->session->set_userdata('tokenUnicheck', $datauploadProposalMethod['access_token']);
 		}
 
 		if ( ! $this->upload->do_upload('berkas')){
@@ -202,7 +214,7 @@ class ControllerKaryawan extends CI_Controller {
 		$data['id_kategori'] = $this->input->post('kategori');
 		$this->db->insert('tbl_list_proposal',$data);
 		$this->session->set_flashdata("notif","<div class='alert alert-success'>Data berhasil di Upload</div>");
-		header('location:'.base_url().'Karyawan/uploadProposal');
+		header('location:'.base_url().'Karyawan/UploadProposal');
 	}
 
 	public function hasilPlagiatProposal(){
@@ -214,9 +226,9 @@ class ControllerKaryawan extends CI_Controller {
 	public function checkPlagiatProposal(){
 
 		//cekToken
-		$token = $this->GetTokenUnichek();
-		$dataToken = json_decode($token, TRUE);
-		$this->session->set_userdata('tokenUnicheck', $dataToken['access_token']);
+		$tokencheckPlagiatProposal = $this->GetTokenUnichek();
+		$dataTokencheckPlagiatProposal = json_decode($tokencheckPlagiatProposal, TRUE);
+		$this->session->set_userdata('tokenUnicheck', $dataTokencheckPlagiatProposal['access_token']);
 
 		$id=$this->uri->segment(3);
 
@@ -225,6 +237,14 @@ class ControllerKaryawan extends CI_Controller {
 
 		$cek = $this->checkHasilSimilariti($query['0']['id_similarity']);
 		$respose_cek_unichek = json_decode($cek,true);
+
+		$cekEmpty = isset($respose_cek_unichek['errors']) ? $respose_cek_unichek['errors'] : '';
+
+		if ($cekEmpty != '') {
+			$this->session->set_flashdata("notif","<div class='alert alert-danger'>Gagal Melakukan Pengecekan ke Unicheck</div>");
+			header('location:'.base_url().'Karyawan/HasilPlagiatProposal');
+			return;
+		}
 
 		$where=array('id_proposal'=>$id);
 		$data['status_simirariti'] = $respose_cek_unichek['data']['attributes']['state'];
@@ -265,6 +285,9 @@ class ControllerKaryawan extends CI_Controller {
 			return;
 		}
 
+		$data['id_unit_kerja'] = $this->input->post('unit_kerja');
+		$data['id_area'] = $this->input->post('area');
+		$data['id_cabang'] = $this->input->post('cabang');
 		$data['nama_file'] = $this->upload->data("file_name");
 		$data['id_makalah'] = $this->input->post("id_makalah");
 		$data['judul_resume'] = $this->input->post('judul_resume');
@@ -283,6 +306,192 @@ class ControllerKaryawan extends CI_Controller {
 	}	
 
 
+	public function editMakalah(){
+
+		$config['upload_path']          = './upload/';
+		$config['allowed_types']        = 'pdf';
+		$config['max_size']             = 2048;
+		// $config['encrypt_name']			= TRUE;
+
+		$where=array('id_makalah'=>$this->input->post("id_makalah"));
+		$this->load->library('upload', $config);
+
+
+		if($_FILES['berkas']['name'] != ''){
+
+			if ($this->session->userdata('tokenUnicheck') === null) {
+				$tokeneditMakalah = $this->GetTokenUnichek();
+				$dataTokenEdit = json_decode($tokeneditMakalah, TRUE);
+				$this->session->set_userdata('tokenUnicheck', $dataTokenEdit['access_token']);
+			}
+
+			if ( ! $this->upload->do_upload('berkas')){
+				$error = array('error' => $this->upload->display_errors());
+				$this->session->set_flashdata("notif","<div class='alert alert-danger'>Data Gagal di Upload, Silahkan ulangi beberapa saat lagi.</div>");
+				header('location:'.base_url().'Karyawan/UploadMakalah');
+				return;
+			}
+
+			//upload to unicheck
+			$hasil_unichek = $this->UploadFileUnichekv2($this->upload->data("file_name"));
+			$respose_unichek = json_decode($hasil_unichek,true);
+
+			//kondisi error
+
+			//start similarity
+			$hasil_similarity_unichek = $this->StartCheckerUnichek($respose_unichek['data']['id']);
+			$respose_similarity_unichek = json_decode($hasil_similarity_unichek,true);
+
+			//insert to db
+			$data['id_unicheck'] = $respose_unichek['data']['id'];
+			$data['id_similarity'] = $respose_similarity_unichek['data']['id'];
+			$data['status_simirariti'] = $respose_similarity_unichek['data']['attributes']['state'];
+			$data['nama_file_makalah'] = $this->upload->data("file_name");
+			$data['judul_makalah'] = $this->input->post('judul_makalah');
+			$data['waktu_upload'] = date('Y-m-d H:i:s');
+			$data['id_karyawan'] = $_SESSION['id_karyawan'];
+			$data['id_unit_kerja'] = $this->input->post('unit_kerja');
+			$data['id_area'] = $this->input->post('area');
+			$data['id_cabang'] = $this->input->post('cabang');
+			$data['id_kategori'] = $this->input->post('kategori');
+			$data['similarity'] = '0';
+			$this->RsModel->EditData("tb_list_makalah",$data,$where);
+
+			$this->session->set_flashdata("notif","<div class='alert alert-success'>Data berhasil di Edit</div>");
+			header('location:'.base_url().'Karyawan/UploadMakalah');
+
+		}else{
+			$data['judul_makalah'] = $this->input->post('judul_makalah');
+			$data['id_karyawan'] = $_SESSION['id_karyawan'];
+			$data['id_unit_kerja'] = $this->input->post('unit_kerja');
+			$data['id_area'] = $this->input->post('area');
+			$data['id_cabang'] = $this->input->post('cabang');
+			$data['id_kategori'] = $this->input->post('kategori');
+			$this->RsModel->EditData("tb_list_makalah",$data,$where);
+
+			$this->session->set_flashdata("notif","<div class='alert alert-success'>Data berhasil di Edit</div>");
+			header('location:'.base_url().'Karyawan/UploadMakalah');
+		}
+
+	}
+
+	public function editProposal(){
+
+		$config['upload_path']          = './upload/';
+		$config['allowed_types']        = 'pdf';
+		$config['max_size']             = 2048;
+		// $config['encrypt_name']			= TRUE;
+
+		$where=array('id_proposal'=>$this->input->post("id_proposal"));
+		$this->load->library('upload', $config);
+
+
+		if($_FILES['berkas']['name'] != ''){
+
+			if ($this->session->userdata('tokenUnicheck') === null) {
+				$tokeneditProposal = $this->GetTokenUnichek();
+				$dataTokeneditProposal = json_decode($tokeneditProposal, TRUE);
+				$this->session->set_userdata('tokenUnicheck', $dataTokeneditProposal['access_token']);
+			}
+
+			if ( ! $this->upload->do_upload('berkas')){
+				$error = array('error' => $this->upload->display_errors());
+				$this->session->set_flashdata("notif","<div class='alert alert-danger'>Data Gagal di Upload, Silahkan ulangi beberapa saat lagi.</div>");
+				header('location:'.base_url().'Karyawan/UploadProposal');
+				return;
+			}
+
+			//upload to unicheck
+			$hasil_unichek = $this->UploadFileUnichekv2($this->upload->data("file_name"));
+			$respose_unichek = json_decode($hasil_unichek,true);
+
+			//kondisi error
+
+			//start similarity
+			$hasil_similarity_unichek = $this->StartCheckerUnichek($respose_unichek['data']['id']);
+			$respose_similarity_unichek = json_decode($hasil_similarity_unichek,true);
+
+			//insert to db
+			$data['id_unicheck'] = $respose_unichek['data']['id'];
+			$data['id_similarity'] = $respose_similarity_unichek['data']['id'];
+			$data['status_simirariti'] = $respose_similarity_unichek['data']['attributes']['state'];
+			$data['nama_file_proposal'] = $this->upload->data("file_name");
+			$data['judul_proposal'] = $this->input->post('judul_proposal');
+			$data['waktu_upload'] = date('Y-m-d H:i:s');
+			$data['id_karyawan'] = $_SESSION['id_karyawan'];
+			$data['id_unit_kerja'] = $this->input->post('unit_kerja');
+			$data['id_area'] = $this->input->post('area');
+			$data['id_cabang'] = $this->input->post('cabang');
+			$data['id_kategori'] = $this->input->post('kategori');
+			$data['similarity'] = '0';
+			$this->RsModel->EditData("tbl_list_proposal",$data,$where);
+
+			$this->session->set_flashdata("notif","<div class='alert alert-success'>Data berhasil di Edit</div>");
+			header('location:'.base_url().'Karyawan/UploadProposal');
+
+		}else{
+			$data['judul_proposal'] = $this->input->post('judul_proposal');
+			$data['id_karyawan'] = $_SESSION['id_karyawan'];
+			$data['id_unit_kerja'] = $this->input->post('unit_kerja');
+			$data['id_area'] = $this->input->post('area');
+			$data['id_cabang'] = $this->input->post('cabang');
+			$data['id_kategori'] = $this->input->post('kategori');
+			$this->RsModel->EditData("tbl_list_proposal",$data,$where);
+
+			$this->session->set_flashdata("notif","<div class='alert alert-success'>Data berhasil di Edit</div>");
+			header('location:'.base_url().'Karyawan/UploadProposal');
+		}
+
+	}
+
+	public function editResume(){
+
+		$config['upload_path']          = './upload/';
+		$config['allowed_types']        = 'pdf';
+		$config['max_size']             = 2048;
+		// $config['encrypt_name']			= TRUE;
+
+		$where=array('id_resume_nasional'=>$this->input->post("id_resume_nasional"));
+		$this->load->library('upload', $config);
+
+
+		if($_FILES['berkas']['name'] != ''){
+
+
+			if ( ! $this->upload->do_upload('berkas')){
+				$error = array('error' => $this->upload->display_errors());
+				$this->session->set_flashdata("notif","<div class='alert alert-danger'>Data Gagal di Upload, Silahkan ulangi beberapa saat lagi.</div>");
+				header('location:'.base_url().'Karyawan/UploadResume');
+				return;
+			}
+
+			$data['id_unit_kerja'] = $this->input->post('unit_kerja');
+			$data['id_area'] = $this->input->post('area');
+			$data['id_cabang'] = $this->input->post('cabang');
+			$data['nama_file'] = $this->upload->data("file_name");
+			$data['id_makalah'] = $this->input->post("id_makalah");
+			$data['judul_resume'] = $this->input->post('judul_resume');
+			$data['id_karyawan'] = $_SESSION['id_karyawan'];
+			$this->RsModel->EditData("tbl_resume_nasional",$data,$where);
+
+			$this->session->set_flashdata("notif","<div class='alert alert-success'>Data berhasil di Edit</div>");
+			header('location:'.base_url().'Karyawan/UploadResume');
+
+		}else{
+			$data['id_unit_kerja'] = $this->input->post('unit_kerja');
+			$data['id_area'] = $this->input->post('area');
+			$data['id_cabang'] = $this->input->post('cabang');
+			$data['id_makalah'] = $this->input->post("id_makalah");
+			$data['judul_resume'] = $this->input->post('judul_resume');
+			$data['id_karyawan'] = $_SESSION['id_karyawan'];
+			$this->RsModel->EditData("tbl_resume_nasional",$data,$where);
+
+			$this->session->set_flashdata("notif","<div class='alert alert-success'>Data berhasil di Edit</div>");
+			header('location:'.base_url().'Karyawan/UploadResume');
+		}
+
+	}
+
 	//Unicheck
 	public function GetTokenUnichek() {
 		/* API URL */
@@ -292,10 +501,10 @@ class ControllerKaryawan extends CI_Controller {
 		$ch = curl_init($url);
 
 		/* Array Parameter Data */
-		$data = ['grant_type'=>'client_credentials', 'client_id'=>'ad20206ddf95213c4573','client_secret'=>'c94aff353d3cbeacfbe0c86183393024db827759'];
+		$dataGetTokenUnichek = ['grant_type'=>'client_credentials', 'client_id'=>'ad20206ddf95213c4573','client_secret'=>'c94aff353d3cbeacfbe0c86183393024db827759'];
 
 		/* pass encoded JSON string to the POST fields */
-		curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+		curl_setopt($ch, CURLOPT_POSTFIELDS, $dataGetTokenUnichek);
 
 		/* set the content type json */
 		curl_setopt($ch, CURLOPT_HTTPHEADER, array(
