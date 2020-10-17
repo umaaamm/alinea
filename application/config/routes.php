@@ -80,12 +80,15 @@ $route['Juri'] ='ControllerJuri';
 $route['Karyawan'] ='ControllerKaryawan';
 
 
-
 //Admin List Makalah
 $route['AdminDivisi/ListMakalah'] ='ControllerAdminDivisi/indexListMakalah';
 $route['SuperAdmin/DataJuri'] = 'ControllerSuperAdmin/indexManajemenJuri';
 $route['SuperAdmin/Juri'] = 'ControllerSuperAdmin/SimpanJuri';
 $route['SuperAdmin/EditDataJuri'] = 'ControllerSuperAdmin/EditDataJuri';
+
+
+$route['SuperAdmin/CekPlagiarismMakalah'] ='ControllerSuperAdmin/hasilPlagiatSuperAdmin';
+$route['SuperAdmin/CekPlagiarismProposal'] ='ControllerSuperAdmin/hasilPlagiatProposalSuperAdmin';
 
 //Admin
 $route['Admin/ManajemenAdmin'] = 'ControllerSuperAdmin/indexAdmin';
@@ -118,7 +121,6 @@ $route['Kanwil/ListMakalah'] = 'ControllerKanwil/indexListMakalah';
 $route['Juri/ListProposal'] = 'ControllerJuri/indexListProposal';
 $route['Juri/ListMakalah'] = 'ControllerJuri/indexListMakalah';
 $route['Juri/Resume'] = 'ControllerJuri/indexListResume';
-
 
 //Super Admin
 $route['SuperAdmin/ManajemenSuperAdmin'] = 'ControllerSuperAdmin/indexSuperAdmin';

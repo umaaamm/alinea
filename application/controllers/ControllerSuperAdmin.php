@@ -213,8 +213,120 @@ class ControllerSuperAdmin extends CI_Controller {
 		$this->load->view('base/master',$data);
 	}
 
-	
 
+	//cek plagiarims super admin
+	public function checkPlagiatProposalSuperAdmin(){
+
+		//cekToken
+		$token = $this->GetTokenUnichekSuperAdmin();
+		$dataToken = json_decode($token, TRUE);
+		$this->session->set_userdata('tokenUnicheck', $dataToken['access_token']);
+
+		$id=$this->uri->segment(3);
+
+		$query = $this->db->query('select * from tbl_list_proposal where id_proposal="'.$id.'"')->result_array();
+
+
+		$cek = $this->checkHasilSimilaritiSuperAdmin($query['0']['id_similarity']);
+		$respose_cek_unichek = json_decode($cek,true);
+
+		$where=array('id_proposal'=>$id);
+		$data['status_simirariti'] = $respose_cek_unichek['data']['attributes']['state'];
+		$data['similarity'] = $respose_cek_unichek['data']['attributes']['similarity'];
+		$this->RsModel->EditData("tbl_list_proposal",$data,$where);
+
+		$this->session->set_flashdata("notif","<div class='alert alert-success'>Berhasil Merefesh Data</div>");
+		header('location:'.base_url().'SuperAdmin/CekPlagiarismProposal');
+	}
+
+	public function checkPlagiatMakalah(){
+		//cekToken
+		$token = $this->GetTokenUnichekSuperAdmin();
+		$dataToken = json_decode($token, TRUE);
+		$this->session->set_userdata('tokenUnicheck', $dataToken['access_token']);
+
+		$id=$this->uri->segment(3);
+
+		$query = $this->db->query('select * from tb_list_makalah where id_makalah="'.$id.'"')->result_array();
+
+
+		$cek = $this->checkHasilSimilaritiSuperAdmin($query['0']['id_similarity']);
+		$respose_cek_unichek = json_decode($cek,true);
+
+		$where=array('id_makalah'=>$id);
+		$data['status_simirariti'] = $respose_cek_unichek['data']['attributes']['state'];
+		$data['similarity'] = $respose_cek_unichek['data']['attributes']['similarity'];
+		$this->RsModel->EditData("tb_list_makalah",$data,$where);
+
+		$this->session->set_flashdata("notif","<div class='alert alert-success'>Berhasil Merefesh Data</div>");
+		header('location:'.base_url().'SuperAdmin/CekPlagiarismMakalah');
+	}
+
+	public function hasilPlagiatProposalSuperAdmin(){
+		$data['dataListProposal']= $this->db->query('select * from tbl_list_proposal ORDER BY id_proposal DESC ')->result_array();
+		$data['content']='admin/checker/proposal/proposal-checker';
+		$this->load->view('base/master',$data);
+	}
+
+	public function hasilPlagiatSuperAdmin(){
+		$data['dataListMakalah']= $this->db->query('select * from tb_list_makalah ORDER BY id_makalah DESC ')->result_array();
+		$data['content']='admin/checker/makalah/makalah-checker';
+		$this->load->view('base/master',$data);
+	}
+
+
+
+	//unicheck
+	public function checkHasilSimilaritiSuperAdmin($idSimirati){
+		$ch = curl_init();
+
+		curl_setopt($ch, CURLOPT_URL, 'https://api.unicheck.com/similarity/checks/'.$idSimirati);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+		curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
+
+		$headers = array();
+		$headers[] = 'Accept: application/vnd.api+json';
+		$headers[] = 'Authorization: Bearer '.$this->session->userdata('tokenUnicheck');
+		curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+
+		$result = curl_exec($ch);
+		if (curl_errno($ch)) {
+			echo 'Error:' . curl_error($ch);
+		}
+		curl_close($ch);
+
+		return $result;
+	}
+
+	public function GetTokenUnichekSuperAdmin() {
+		/* API URL */
+		$url = 'https://api.unicheck.com/oauth/access-token';
+
+		/* Init cURL resource */
+		$ch = curl_init($url);
+
+		/* Array Parameter Data */
+		$data = ['grant_type'=>'client_credentials', 'client_id'=>'ad20206ddf95213c4573','client_secret'=>'c94aff353d3cbeacfbe0c86183393024db827759'];
+
+		/* pass encoded JSON string to the POST fields */
+		curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+
+		/* set the content type json */
+		curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+			'application/x-www-form-urlencoded',
+		));
+
+		/* set return type json */
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+		/* execute request */
+		$result = curl_exec($ch);
+
+		/* close cURL resource */
+		curl_close($ch);
+
+		return $result;
+	}
 
 
 

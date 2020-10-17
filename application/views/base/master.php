@@ -200,161 +200,152 @@
                     <li><a href="#" class="active">Dashboard</a></li>
                   </ul>
                 </li>
-            <!-- <li class="dropdown">
-              <a class="nav-link menu-title {{request()->route()->getPrefix() == '/widgets' ? 'active' : '' }}" href="#"><i data-feather="airplay"></i><span>Data PIA</span>
-                <div class="according-menu"><i class="fa fa-angle-{{request()->route()->getPrefix() == '/widgets' ? 'down' : 'right' }}"></i></div>
-              </a>
-              <ul class="nav-submenu menu-content" style="display: {{ request()->route()->getPrefix() == '/widgets' ? 'block;' : 'none;' }}">
-                <li><a href="{{route('general-widget')}}" class="{{ Route::currentRouteName()=='general-widget' ? 'active' : '' }}">File Terupload</a></li>
-                <li><a href="{{route('chart-widget')}}" class="{{ Route::currentRouteName()=='chart-widget' ? 'active' : '' }}">File Checker</a></li>
+                <?php if($_SESSION['role_admin'] == '4') { ?>
+                  <li class="dropdown">
+                    <a class="nav-link menu-title <?php echo $this->uri->rsegment(1) == 'ControllerAdminDivisi' ? 'active' : '' ?>" href="#"><i data-feather="airplay"></i><span>Admin Divisi</span>
+                      <div class="according-menu"><i class="fa fa-angle-<?php echo $this->uri->rsegment(1) == 'ControllerAdminDivisi' ? 'down' : 'right' ?>"></i></div>
+                    </a>
+                    <ul class="nav-submenu menu-content" style="display: <?php echo $this->uri->rsegment(1) === 'ControllerAdminDivisi' ?  'block;' : 'none;' ?>">
+                      <li><a href="<?php echo base_url();?>Divisi/ListProposal" class="<?php echo $this->uri->rsegment(2) == 'indexListProposal' ? 'active' : '' ?>">List Proposal</a></li>
+                      <li><a href="<?php echo base_url()?>AdminDivisi/ListMakalah" class="<?php echo $this->uri->rsegment(2) === 'indexListMakalah' ?  'active' : '' ?>">List Makalah</a></li>
+                      <li><a href="#" class="<?php echo $this->uri->rsegment(2) == 'indexScoreProposal' ? 'active' : '' ?>">Score Proposal</a></li>
+                    </ul>
+                  </li>
+
+                <?php } ?>
+
+                <?php if($_SESSION['role_admin'] == '1' ) { ?>
+                  <li class="dropdown">
+                    <a class="nav-link menu-title <?php echo $this->uri->rsegment(1) == 'ControllerAdminDirektorat' ? 'active' : '' ?>" href="#"><i data-feather="airplay"></i><span>Admin Direktorat</span>
+                      <div class="according-menu"><i class="fa fa-angle-<?php echo $this->uri->rsegment(1) == 'ControllerAdminDirektorat' ? 'down' : 'right' ?>"></i></div>
+                    </a>
+                    <ul class="nav-submenu menu-content" style="display: <?php echo $this->uri->rsegment(1) === 'ControllerAdminDirektorat' ? 'block;' : 'none;' ?>">
+                      <li><a href="<?php echo base_url();?>Direktorat/ListProposal" class="<?php echo $this->uri->rsegment(2) === 'indexListProposalDirektorat' ?  'active' : '' ?>">List Proposal</a></li>
+                      <li><a href="<?php echo base_url();?>Direktorat/ListMakalah" class="<?php echo $this->uri->rsegment(2) === 'indexListMakalahDirektorat' ?  'active' : '' ?>">List Makalah</a></li>
+                      <li><a href="#" class="<?php echo $this->uri->rsegment(2) === 'indexScoreMakalahDirektorat' ?  'active' : '' ?>">Score Makalah</a></li>
+                    </ul>
+                  </li>
+                <?php } ?>
+                <?php if($_SESSION['role_admin'] == '2' ) { ?>
+                  <li class="dropdown">
+                    <a class="nav-link menu-title <?php echo $this->uri->rsegment(1) == 'ControllerAdminArea' ? 'active' : '' ?>" href="#"><i data-feather="airplay"></i><span>Admin Area</span>
+                      <div class="according-menu"><i class="fa fa-angle-<?php echo $this->uri->rsegment(1) == 'ControllerAdminArea' ? 'down' : 'right' ?>"></i></div>
+                    </a>
+                    <ul class="nav-submenu menu-content" style="display: <?php echo $this->uri->rsegment(1) === 'ControllerAdminArea' ? 'block;' : 'none;' ?>">
+                      <li><a href="<?php echo base_url();?>Area/ListProposal" class="<?php echo $this->uri->rsegment(2) === 'indexListProposalArea' ?  'active' : '' ?>">List Proposal</a></li>
+                      <li><a href="<?php echo base_url();?>Area/ListMakalah" class="<?php echo $this->uri->rsegment(2) === 'indexListMakalahArea' ?  'active' : '' ?>">List Makalah</a></li>
+                      <li><a href="#" class="<?php echo $this->uri->rsegment(2) === 'indexScoreProposalArea' ?  'active' : '' ?>">Score Proposal</a></li>
+
+                    </ul>
+                  </li>
+                <?php } ?>
+
+                <?php if($_SESSION['role_admin'] == '3' ) { ?>
+
+                  <li class="dropdown">
+                    <a class="nav-link menu-title <?php echo $this->uri->rsegment(1) == 'ControllerAdminKanwil' ? 'active' : '' ?>" href="#"><i data-feather="airplay"></i><span>Admin Kantor Wilayah</span>
+                      <div class="according-menu"><i class="fa fa-angle-<?php echo $this->uri->rsegment(1) == 'ControllerAdminKanwil' ? 'down' : 'right' ?>"></i></div>
+                    </a>
+                    <ul class="nav-submenu menu-content" style="display: <?php echo $this->uri->rsegment(1) == 'ControllerAdminKanwil' ? 'block;' : 'none;' ?>">
+                      <li><a href="<?php echo base_url();?>Kanwil/ListProposal" class="<?php echo $this->uri->rsegment(2) === 'indexListProposalKanwil' ?  'active' : '' ?>">List Proposal</a></li>
+                      <li><a href="<?php echo base_url();?>Kanwil/ListMakalah" class="<?php echo $this->uri->rsegment(2) === 'indexListMakalahKanwil' ?  'active' : '' ?>">List Makalah</a></li>
+                      <li><a href="#" class="<?php echo $this->uri->rsegment(2) === 'indexScoreMakalahKanwil' ?  'active' : '' ?>">Score Makalah</a></li>
+                    </ul>
+                  </li>
+                <?php } ?>
+
+                <?php if($_SESSION['role_admin'] == '5' ) { ?>
+                  <li class="dropdown">
+                    <a class="nav-link menu-title <?php echo $this->uri->rsegment(1) == 'ControllerAdminKanwil' ? 'active' : '' ?>" href="#"><i data-feather="users"></i><span>Admin Budaya Kerja</span>
+                      <div class="according-menu"><i class="fa fa-angle-<?php echo $this->uri->rsegment(1) == 'ControllerAdminKanwil' ? 'down' : 'right' ?>"></i></div>
+                    </a>
+                    <ul class="nav-submenu menu-content" style="display: <?php echo $this->uri->rsegment(1) == 'ControllerAdminKanwil' ? 'block;' : 'none;' ?>">
+                      <li><a href="#" class="<?php echo $this->uri->rsegment(2) === 'indexScoreProposalBudayaKerja' ?  'active' : '' ?>">Score Proposal</a></li>
+                      <li><a href="#" class="<?php echo $this->uri->rsegment(2) === 'indexManajemenPengumumanBudayaKerja' ?  'active' : '' ?>">Manajemen Pengumuman</a></li>
+                      <li><a href="#" class="<?php echo $this->uri->rsegment(2) === 'indexScoreMakalahBudayaKerja' ?  'active' : '' ?>">Score Makalah</a></li>
+                    </ul>
+                  </li>
+                <?php } ?>
+                <?php if($_SESSION['role_admin'] == '0') { ?>
+                  <li class="dropdown">
+                    <a class="nav-link menu-title <?php echo $this->uri->rsegment(1) == 'ControllerSuperAdmin' ? 'active' : '' ?>" href="#"><i data-feather="users"></i><span>Super Admin</span>
+                      <div class="according-menu"><i class="fa fa-angle-<?php echo $this->uri->rsegment(1) == 'ControllerSuperAdmin' ? 'down' : 'right' ?>"></i></div>
+                    </a>
+                    <ul class="nav-submenu menu-content" style="display: <?php echo $this->uri->rsegment(1) == 'ControllerSuperAdmin' ? 'block;' : 'none;' ?>">
+                      <li><a href="<?php echo base_url();?>SuperAdmin/DataJuri" class="<?php echo $this->uri->rsegment(2) === 'indexManajemenJuri' ?  'active' : '' ?>">Manajemen Juri</a></li>
+                      <li><a href="<?php echo base_url();?>SuperAdmin/CekPlagiarismMakalah" class="<?php echo $this->uri->rsegment(2) === 'indexFileChecker' ?  'active' : '' ?>">Makalah Checker</a></li>
+                      <li><a href="<?php echo base_url();?>SuperAdmin/CekPlagiarismProposal" class="<?php echo $this->uri->rsegment(2) === 'indexFileChecker' ?  'active' : '' ?>">Proposal Checker</a></li>
+                      <li><a href="<?php echo base_url();?>Admin/ManajemenAdmin" class="<?php echo $this->uri->rsegment(2) === 'indexManajemenAdmin' ?  'active' : '' ?>">Manajemen Admin</a></li>
+                      <li><a href="<?php echo base_url();?>SuperAdmin/Treshold" class="<?php echo $this->uri->rsegment(2) === 'indexManajemenTreshold' ?  'active' : '' ?>">Manajemen Treshold</a></li>
+                      <li><a href="<?php echo base_url();?>SuperAdmin/ManajemenSuperAdmin" class="<?php echo $this->uri->rsegment(2) === 'indexManajemenSuperAdmin' ?  'active' : '' ?>">Manajemen Super Admin</a></li>
+                      <li><a href="<?php echo base_url();?>Admin/ListMakalah" class="<?php echo $this->uri->rsegment(2) === 'indexListMakalahSuperAdmin' ?  'active' : '' ?>">List Makalah</a></li>
+                      <li><a href="<?php echo base_url();?>Admin/ListProposal" class="<?php echo $this->uri->rsegment(2) === 'indexListProposalSuperAdmin' ?  'active' : '' ?>">List Proposal</a></li>
+                      <li><a href="#" class="<?php echo $this->uri->rsegment(2) === 'indexScoreMakalahSuperAdmin' ?  'active' : '' ?>">Score Makalah</a></li>
+                      <li><a href="#" class="<?php echo $this->uri->rsegment(2) === 'indexScoreProposalSuperAdmin' ?  'active' : '' ?>">Score Proposal</a></li>
+                    </ul>
+                  </li>
+                <?php } ?>
+                <?php if($_SESSION['role_admin'] == '6') { ?>
+                  <li class="dropdown">
+                    <a class="nav-link menu-title active" href="#"><i data-feather="user"></i><span>Karyawan</span>
+                      <div class="according-menu"><i class="fa fa-angle-<?php echo $this->uri->rsegment(1) == 'ControllerKaryawan' ? 'down' : 'right' ?>"></i></div>
+                    </a>
+                    <ul class="nav-submenu menu-content" style="display: <?php echo $this->uri->rsegment(1) == 'ControllerKaryawan' ? 'block;' : 'none;' ?>">
+                      <li><a href="#" class="<?php echo $this->uri->rsegment(2) === 'indexDashboardKaryawan' ?  'active' : '' ?>">Dashboard</a></li>
+                      <li><a href="<?php echo base_url()?>Karyawan/UploadMakalah" class="<?php echo $this->uri->rsegment(2) === 'indexUploadMakalah' ?  'active' : '' ?>">Upload Makalah</a></li>
+                      <li><a href="<?php echo base_url();?>Karyawan/UploadProposal" class="<?php echo $this->uri->rsegment(2) === 'indexUploadProposal' ?  'active' : '' ?>">Upload Proposal</a></li>
+                      <li><a href="<?php echo base_url();?>Karyawan/UploadResume" class="<?php echo $this->uri->rsegment(2) === 'indexUploadResumeProposal' ?  'active' : '' ?>">Upload Resume Nasional</a></li>
+                      <li><a href="<?php echo base_url();?>Karyawan/HasilPlagiat" class="<?php echo $this->uri->rsegment(2) === 'indexHasilChecker' ?  'active' : '' ?>">Hasil Checker</a></li>
+                      <li><a href="<?php echo base_url();?>Karyawan/HasilPlagiatProposal" class="<?php echo $this->uri->rsegment(2) === 'indexHasilCheckerProposal' ?  'active' : '' ?>">Hasil Checker Proposal</a></li>
+                    </ul>
+                  </li>
+                <?php } ?>
+
+                <?php if($_SESSION['role_admin'] == '7') { ?>
+                  <li class="dropdown">
+                    <a class="nav-link menu-title <?php echo $this->uri->rsegment(1) == 'ControllerJuri' ? 'active' : '' ?>" href="#"><i data-feather="airplay"></i><span>Juri</span>
+                      <div class="according-menu"><i class="fa fa-angle-<?php echo $this->uri->rsegment(1) == 'ControllerJuri' ? 'down' : 'right' ?>"></i></div>
+                    </a>
+                    <ul class="nav-submenu menu-content" style="display: <?php echo $this->uri->rsegment(1) == 'ControllerJuri' ? 'block;' : 'none;' ?>">
+                      <li><a href="<?php echo base_url();?><?php if($_SESSION['role_admin'] == '7') { echo "Juri/ListMakalah"; } else { echo "SuperAdmin/ListMakalahJuri";}?>" class="<?php echo $this->uri->rsegment(2) === 'indexListMakalahJuri' ?  'active' : '' ?>">List Makalah</a></li>
+                      <li><a href="<?php echo base_url();?><?php if($_SESSION['role_admin'] == '7') { echo "Juri/ListProposal"; } else { echo "SuperAdmin/ListProposalJuri";}?>" class="<?php echo $this->uri->rsegment(2) === 'indexListProposalJuri' ?  'active' : '' ?>">List Proposal</a></li>
+                      <li><a href="<?php echo base_url();?><?php if($_SESSION['role_admin'] == '7') { echo "Juri/Resume"; } else { echo "SuperAdmin/ResumeJuri";}?>" class="<?php echo $this->uri->rsegment(2) === 'indexListResumeNasional' ?  'active' : '' ?>">List Resume Nasional</a></li>
+                      <li><a href="#" class="<?php echo $this->uri->rsegment(2) === 'indexScoreMakalahNasional' ?  'active' : '' ?>">Score Makalah Nasional</a></li>
+                    </ul>
+                  </li>
+                <?php } ?>
               </ul>
-            </li> -->
-            <?php if($_SESSION['role_admin'] == '4' || $_SESSION['role_admin'] == '0') { ?>
-              <li class="dropdown">
-                <a class="nav-link menu-title <?php echo $this->uri->rsegment(1) == 'ControllerAdminDivisi' ? 'active' : '' ?>" href="#"><i data-feather="airplay"></i><span>Admin Divisi</span>
-                  <div class="according-menu"><i class="fa fa-angle-<?php echo $this->uri->rsegment(1) == 'ControllerAdminDivisi' ? 'down' : 'right' ?>"></i></div>
-                </a>
-                <ul class="nav-submenu menu-content" style="display: <?php echo $this->uri->rsegment(1) === 'ControllerAdminDivisi' ?  'block;' : 'none;' ?>">
-                  <li><a href="<?php echo base_url();?>Divisi/ListProposal" class="<?php echo $this->uri->rsegment(2) == 'indexListProposal' ? 'active' : '' ?>">List Proposal</a></li>
-                  <li><a href="<?php echo base_url()?>AdminDivisi/ListMakalah" class="<?php echo $this->uri->rsegment(2) === 'indexListMakalah' ?  'active' : '' ?>">List Makalah</a></li>
-                  <li><a href="#" class="<?php echo $this->uri->rsegment(2) == 'indexScoreProposal' ? 'active' : '' ?>">Score Proposal</a></li>
-                </ul>
-              </li>
+            </div>
+          </div>
+        </nav>
+      </header>
+      <!-- Page Sidebar Ends-->
+      <div class="page-body">
+        <div class="container-fluid">
 
-            <?php } ?>
+          <?php
+          $this->load->view($content);
+          ?>
 
-            <?php if($_SESSION['role_admin'] == '1' || $_SESSION['role_admin'] == '0') { ?>
-              <li class="dropdown">
-                <a class="nav-link menu-title <?php echo $this->uri->rsegment(1) == 'ControllerAdminDirektorat' ? 'active' : '' ?>" href="#"><i data-feather="airplay"></i><span>Admin Direktorat</span>
-                  <div class="according-menu"><i class="fa fa-angle-<?php echo $this->uri->rsegment(1) == 'ControllerAdminDirektorat' ? 'down' : 'right' ?>"></i></div>
-                </a>
-                <ul class="nav-submenu menu-content" style="display: <?php echo $this->uri->rsegment(1) === 'ControllerAdminDirektorat' ? 'block;' : 'none;' ?>">
-                  <li><a href="<?php echo base_url();?>Direktorat/ListProposal" class="<?php echo $this->uri->rsegment(2) === 'indexListProposalDirektorat' ?  'active' : '' ?>">List Proposal</a></li>
-                  <li><a href="<?php echo base_url();?>Direktorat/ListMakalah" class="<?php echo $this->uri->rsegment(2) === 'indexListMakalahDirektorat' ?  'active' : '' ?>">List Makalah</a></li>
-                  <li><a href="#" class="<?php echo $this->uri->rsegment(2) === 'indexScoreMakalahDirektorat' ?  'active' : '' ?>">Score Makalah</a></li>
-                </ul>
-              </li>
-            <?php } ?>
-            <?php if($_SESSION['role_admin'] == '2' || $_SESSION['role_admin'] == '0') { ?>
-              <li class="dropdown">
-                <a class="nav-link menu-title <?php echo $this->uri->rsegment(1) == 'ControllerAdminArea' ? 'active' : '' ?>" href="#"><i data-feather="airplay"></i><span>Admin Area</span>
-                  <div class="according-menu"><i class="fa fa-angle-<?php echo $this->uri->rsegment(1) == 'ControllerAdminArea' ? 'down' : 'right' ?>"></i></div>
-                </a>
-                <ul class="nav-submenu menu-content" style="display: <?php echo $this->uri->rsegment(1) === 'ControllerAdminArea' ? 'block;' : 'none;' ?>">
-                  <li><a href="<?php echo base_url();?>Area/ListProposal" class="<?php echo $this->uri->rsegment(2) === 'indexListProposalArea' ?  'active' : '' ?>">List Proposal</a></li>
-                  <li><a href="<?php echo base_url();?>Area/ListMakalah" class="<?php echo $this->uri->rsegment(2) === 'indexListMakalahArea' ?  'active' : '' ?>">List Makalah</a></li>
-                  <li><a href="#" class="<?php echo $this->uri->rsegment(2) === 'indexScoreProposalArea' ?  'active' : '' ?>">Score Proposal</a></li>
 
-                </ul>
-              </li>
-            <?php } ?>
-
-            <?php if($_SESSION['role_admin'] == '3' || $_SESSION['role_admin'] == '0') { ?>
-
-              <li class="dropdown">
-                <a class="nav-link menu-title <?php echo $this->uri->rsegment(1) == 'ControllerAdminKanwil' ? 'active' : '' ?>" href="#"><i data-feather="airplay"></i><span>Admin Kantor Wilayah</span>
-                  <div class="according-menu"><i class="fa fa-angle-<?php echo $this->uri->rsegment(1) == 'ControllerAdminKanwil' ? 'down' : 'right' ?>"></i></div>
-                </a>
-                <ul class="nav-submenu menu-content" style="display: <?php echo $this->uri->rsegment(1) == 'ControllerAdminKanwil' ? 'block;' : 'none;' ?>">
-                  <li><a href="<?php echo base_url();?>Kanwil/ListProposal" class="<?php echo $this->uri->rsegment(2) === 'indexListProposalKanwil' ?  'active' : '' ?>">List Proposal</a></li>
-                  <li><a href="<?php echo base_url();?>Kanwil/ListMakalah" class="<?php echo $this->uri->rsegment(2) === 'indexListMakalahKanwil' ?  'active' : '' ?>">List Makalah</a></li>
-                  <li><a href="#" class="<?php echo $this->uri->rsegment(2) === 'indexScoreMakalahKanwil' ?  'active' : '' ?>">Score Makalah</a></li>
-                </ul>
-              </li>
-            <?php } ?>
-
-            <?php if($_SESSION['role_admin'] == '5' || $_SESSION['role_admin'] == '0') { ?>
-              <li class="dropdown">
-                <a class="nav-link menu-title <?php echo $this->uri->rsegment(1) == 'ControllerAdminKanwil' ? 'active' : '' ?>" href="#"><i data-feather="users"></i><span>Admin Budaya Kerja</span>
-                  <div class="according-menu"><i class="fa fa-angle-<?php echo $this->uri->rsegment(1) == 'ControllerAdminKanwil' ? 'down' : 'right' ?>"></i></div>
-                </a>
-                <ul class="nav-submenu menu-content" style="display: <?php echo $this->uri->rsegment(1) == 'ControllerAdminKanwil' ? 'block;' : 'none;' ?>">
-                  <li><a href="#" class="<?php echo $this->uri->rsegment(2) === 'indexScoreProposalBudayaKerja' ?  'active' : '' ?>">Score Proposal</a></li>
-                  <li><a href="#" class="<?php echo $this->uri->rsegment(2) === 'indexManajemenPengumumanBudayaKerja' ?  'active' : '' ?>">Manajemen Pengumuman</a></li>
-                  <li><a href="#" class="<?php echo $this->uri->rsegment(2) === 'indexScoreMakalahBudayaKerja' ?  'active' : '' ?>">Score Makalah</a></li>
-                </ul>
-              </li>
-            <?php } ?>
-            <?php if($_SESSION['role_admin'] == '0') { ?>
-              <li class="dropdown">
-                <a class="nav-link menu-title <?php echo $this->uri->rsegment(1) == 'ControllerSuperAdmin' ? 'active' : '' ?>" href="#"><i data-feather="users"></i><span>Super Admin</span>
-                  <div class="according-menu"><i class="fa fa-angle-<?php echo $this->uri->rsegment(1) == 'ControllerSuperAdmin' ? 'down' : 'right' ?>"></i></div>
-                </a>
-                <ul class="nav-submenu menu-content" style="display: <?php echo $this->uri->rsegment(1) == 'ControllerSuperAdmin' ? 'block;' : 'none;' ?>">
-                  <li><a href="<?php echo base_url();?>SuperAdmin/DataJuri" class="<?php echo $this->uri->rsegment(2) === 'indexManajemenJuri' ?  'active' : '' ?>">Manajemen Juri</a></li>
-                  <li><a href="#" class="<?php echo $this->uri->rsegment(2) === 'indexFileTerupload' ?  'active' : '' ?>">File Terupload</a></li>
-                  <li><a href="#" class="<?php echo $this->uri->rsegment(2) === 'indexFileChecker' ?  'active' : '' ?>">File Checker</a></li>
-                  <li><a href="<?php echo base_url();?>Admin/ManajemenAdmin" class="<?php echo $this->uri->rsegment(2) === 'indexManajemenAdmin' ?  'active' : '' ?>">Manajemen Admin</a></li>
-                  <li><a href="<?php echo base_url();?>SuperAdmin/Treshold" class="<?php echo $this->uri->rsegment(2) === 'indexManajemenTreshold' ?  'active' : '' ?>">Manajemen Treshold</a></li>
-                  <li><a href="<?php echo base_url();?>SuperAdmin/ManajemenSuperAdmin" class="<?php echo $this->uri->rsegment(2) === 'indexManajemenSuperAdmin' ?  'active' : '' ?>">Manajemen Super Admin</a></li>
-                  <li><a href="<?php echo base_url();?>Admin/ListMakalah" class="<?php echo $this->uri->rsegment(2) === 'indexListMakalahSuperAdmin' ?  'active' : '' ?>">List Makalah</a></li>
-                  <li><a href="<?php echo base_url();?>Admin/ListProposal" class="<?php echo $this->uri->rsegment(2) === 'indexListProposalSuperAdmin' ?  'active' : '' ?>">List Proposal</a></li>
-                  <li><a href="#" class="<?php echo $this->uri->rsegment(2) === 'indexScoreMakalahSuperAdmin' ?  'active' : '' ?>">Score Makalah</a></li>
-                  <li><a href="#" class="<?php echo $this->uri->rsegment(2) === 'indexScoreProposalSuperAdmin' ?  'active' : '' ?>">Score Proposal</a></li>
-                </ul>
-              </li>
-            <?php } ?>
-            <?php if($_SESSION['role_admin'] == '6' || $_SESSION['role_admin'] == '0') { ?>
-              <li class="dropdown">
-                <a class="nav-link menu-title active" href="#"><i data-feather="user"></i><span>Karyawan</span>
-                  <div class="according-menu"><i class="fa fa-angle-<?php echo $this->uri->rsegment(1) == 'ControllerKaryawan' ? 'down' : 'right' ?>"></i></div>
-                </a>
-                <ul class="nav-submenu menu-content" style="display: <?php echo $this->uri->rsegment(1) == 'ControllerKaryawan' ? 'block;' : 'none;' ?>">
-                  <li><a href="#" class="<?php echo $this->uri->rsegment(2) === 'indexDashboardKaryawan' ?  'active' : '' ?>">Dashboard</a></li>
-                  <li><a href="<?php echo base_url()?>Karyawan/UploadMakalah" class="<?php echo $this->uri->rsegment(2) === 'indexUploadMakalah' ?  'active' : '' ?>">Upload Makalah</a></li>
-                  <li><a href="<?php echo base_url();?>Karyawan/UploadProposal" class="<?php echo $this->uri->rsegment(2) === 'indexUploadProposal' ?  'active' : '' ?>">Upload Proposal</a></li>
-                  <li><a href="<?php echo base_url();?>Karyawan/UploadResume" class="<?php echo $this->uri->rsegment(2) === 'indexUploadResumeProposal' ?  'active' : '' ?>">Upload Resume Nasional</a></li>
-                  <li><a href="<?php echo base_url();?>Karyawan/HasilPlagiat" class="<?php echo $this->uri->rsegment(2) === 'indexHasilChecker' ?  'active' : '' ?>">Hasil Checker</a></li>
-                  <li><a href="<?php echo base_url();?>Karyawan/HasilPlagiatProposal" class="<?php echo $this->uri->rsegment(2) === 'indexHasilCheckerProposal' ?  'active' : '' ?>">Hasil Checker Proposal</a></li>
-                </ul>
-              </li>
-            <?php } ?>
-
-            <?php if($_SESSION['role_admin'] == '7' || $_SESSION['role_admin'] == '0') { ?>
-              <li class="dropdown">
-                <a class="nav-link menu-title <?php echo $this->uri->rsegment(1) == 'ControllerJuri' ? 'active' : '' ?>" href="#"><i data-feather="airplay"></i><span>Juri</span>
-                  <div class="according-menu"><i class="fa fa-angle-<?php echo $this->uri->rsegment(1) == 'ControllerJuri' ? 'down' : 'right' ?>"></i></div>
-                </a>
-                <ul class="nav-submenu menu-content" style="display: <?php echo $this->uri->rsegment(1) == 'ControllerJuri' ? 'block;' : 'none;' ?>">
-                  <li><a href="<?php echo base_url();?><?php if($_SESSION['role_admin'] == '7') { echo "Juri/ListMakalah"; } else { echo "SuperAdmin/ListMakalahJuri";}?>" class="<?php echo $this->uri->rsegment(2) === 'indexListMakalahJuri' ?  'active' : '' ?>">List Makalah</a></li>
-                  <li><a href="<?php echo base_url();?><?php if($_SESSION['role_admin'] == '7') { echo "Juri/ListProposal"; } else { echo "SuperAdmin/ListProposalJuri";}?>" class="<?php echo $this->uri->rsegment(2) === 'indexListProposalJuri' ?  'active' : '' ?>">List Proposal</a></li>
-                  <li><a href="<?php echo base_url();?><?php if($_SESSION['role_admin'] == '7') { echo "Juri/Resume"; } else { echo "SuperAdmin/ResumeJuri";}?>" class="<?php echo $this->uri->rsegment(2) === 'indexListResumeNasional' ?  'active' : '' ?>">List Resume Nasional</a></li>
-                  <li><a href="#" class="<?php echo $this->uri->rsegment(2) === 'indexScoreMakalahNasional' ?  'active' : '' ?>">Score Makalah Nasional</a></li>
-                </ul>
-              </li>
-            <?php } ?>
-          </ul>
         </div>
       </div>
-    </nav>
-  </header>
-  <!-- Page Sidebar Ends-->
-  <div class="page-body">
-    <div class="container-fluid">
-
-      <?php
-      $this->load->view($content);
-      ?>
-
-
+      <!-- Container-fluid Ends-->
     </div>
-  </div>
-  <!-- Container-fluid Ends-->
-</div>
-<!-- footer start-->
-<footer class="footer">
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-md-6 footer-copyright">
-        <p class="mb-0">Copyright 2020 © Alinea All rights reserved.</p>
+    <!-- footer start-->
+    <footer class="footer">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-6 footer-copyright">
+            <p class="mb-0">Copyright 2020 © Alinea All rights reserved.</p>
+          </div>
+          <div class="col-md-6">
+            <p class="pull-right mb-0">For Pegadaian & made with <i class="fa fa-heart font-secondary"></i></p>
+          </div>
+        </div>
       </div>
-      <div class="col-md-6">
-        <p class="pull-right mb-0">For Pegadaian & made with <i class="fa fa-heart font-secondary"></i></p>
-      </div>
-    </div>
+    </footer>
   </div>
-</footer>
-</div>
 </div>
 <!-- latest jquery-->
 <script src="<?php echo base_url();?>/assets/js/jquery-3.5.1.min.js"></script>
